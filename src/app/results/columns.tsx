@@ -2,7 +2,6 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import Link from "next/link"
-import Image from "next/image"
 import mainLeague from "@/../public/main.jpg"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,18 +12,17 @@ export type Results = {
   amount: number
   teamvs: object
   email: string
-  league: string
   date: string
   stadium: string
   broadcast: string
+  league: string
 }
 
 export const columns: ColumnDef<Results>[] = [
   {
     accessorKey: "league",
     header: "League",
-    cell: ({ row }) => {
-      const league = row.getValue("league")
+    cell: () => {
       return (
         <Link href="/">
           <Avatar>
@@ -39,7 +37,7 @@ export const columns: ColumnDef<Results>[] = [
     accessorKey: "teamvs",
     header: "Team A vs Team B",
     cell: ({ row }) => {
-      const teamvs = row.getValue("teamvs") as { teamA: string, teamB: string, logoA: string, logoB: string, resultA: number, resultB: number }
+      const teamvs = row.getValue("teamvs") as { teamA: string, teamB: string, logoA: string, logoB: string, resultA: number, resultB: number, league: string }
       return (
         <div className="flex flex-row items-cente gap-4">
           <div className="flex flex-row items-center gap-4">

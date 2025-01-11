@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import favicon from './../app/favicon.ico';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import mainLogo from './../../public/premier_league.svg';
@@ -27,7 +26,6 @@ export default function Header() {
 
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
-  const subNavRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {

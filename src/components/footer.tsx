@@ -3,8 +3,7 @@
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faTwitter, faInstagram, faYoutube, faLinkedin, faTelegram, faTiktok } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faTwitter, faInstagram, faYoutube, faLinkedin, faTiktok } from '@fortawesome/free-brands-svg-icons';
 export default function Footer() {
     const socials = [
         {

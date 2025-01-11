@@ -1,5 +1,4 @@
-import { ComboboxDemo } from "@/components/ui/combobox"
-import Image from "next/image";
+import { ComboboxDemo } from "@/components/ui/combobox";
 import mainLogo from "@/../public/main.jpg";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 

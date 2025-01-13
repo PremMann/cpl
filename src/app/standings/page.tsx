@@ -1,8 +1,8 @@
 import { ComboboxDemo } from '@/components/ui/combobox';
-import { Prisma } from '@prisma/client';
+import prisma from '@/lib/db';
 
 async function getUserData() {
-  return await Prisma.user.findMany();
+  return await prisma.user.findMany();
 }
 
 export default async function Page() {

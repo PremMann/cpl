@@ -1,12 +1,12 @@
 import { ComboboxDemo } from '@/components/ui/combobox';
-import prisma from '@/lib/db';
+// import prisma from '@/lib/db';
 
-async function getUserData() {
-  return await prisma.user.findMany();
-}
+// async function getUserData() {
+//   return await prisma.user.findMany();
+// }
 
 export default async function Page() {
-  const users = await getUserData();
+  // const users = await getUserData();
   return (
     <div className="container mx-auto p-4">
       <div className="flex w-full bg-black p-2 rounded">

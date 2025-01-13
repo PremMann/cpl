@@ -1,7 +1,8 @@
 import { Results, columns } from "./columns";
 import mainLogo from "@/../public/main.jpg"
 import { ComboboxDemo } from "@/components/ui/combobox"
-import { DataTable } from "@/data/table/data-table"
+import { DataTable } from "@/data/table/data-table";
+
 
 
    async function getData(): Promise<Results[]> {

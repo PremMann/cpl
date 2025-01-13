@@ -1,7 +1,12 @@
-
 import { ComboboxDemo } from '@/components/ui/combobox';
+// import prisma from '@/lib/db';
 
-function Page() {
+// async function getUserData() {
+//   return await prisma.user.findMany();
+// }
+
+export default async function Page() {
+  // const users = await getUserData();
   return (
     <div className="container mx-auto p-4">
       <div className="flex w-full bg-black p-2 rounded">
@@ -13,9 +18,7 @@ function Page() {
       <div className="py-4">
         <ComboboxDemo />
       </div>
-      <span> Table remove for deploy</span>
+      <span> Table removed for deploy</span>
     </div>
   );
 }
-
-export default Page;

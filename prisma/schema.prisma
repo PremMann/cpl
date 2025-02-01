@@ -45,4 +45,5 @@ model Comment {
   content String
   post    Post   @relation(fields: [postId], references: [id])
   postId  Int
+  title   String
 }

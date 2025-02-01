@@ -4,16 +4,7 @@
 			"path": "../.."
 		},
 		{
-			"path": "../../../mplid"
-		},
-		{
-			"path": "../../../blogr-nextjs-prisma"
-		},
-		{
-			"path": "../../../nextjs-dashboard"
-		},
-		{
-			"path": "../../../../BT-Mobile-App/cv/CV"
+			"path": "../../../docker/docker-app-001"
 		}
 	],
 	"settings": {}

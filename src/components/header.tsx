@@ -46,7 +46,7 @@ export default function Header() {
 
   return (
     <div>
-       <header ref={navRef} className="flex md:flex-col justify-between items-center w-full bg-black md:bg-white">
+       <header ref={navRef} className="flex md:flex-col justify-between items-center w-full bg-black md:bg-black">
       {/* Top Section */}
       <div className="flex flex-row justify-between w-full py-4 px-4 md:px-7">
         <div>

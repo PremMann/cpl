@@ -46,3 +46,74 @@ model Category {
   id   Int    @id @default(autoincrement())
   name String
 }
+
+model Club {
+  id           Int        @id @default(autoincrement())
+  name         String
+  stateId      Int
+  state        State      @relation(fields: [stateId], references: [id])
+  fixturesHome Fixture[]  @relation("HomeClub")
+  fixturesAway Fixture[]  @relation("AwayClub")
+  results      Result[]
+  standings    Standing[]
+  players      Player[]
+}
+
+model Player {
+  id       Int    @id @default(autoincrement())
+  name     String
+  position String
+  clubId   Int
+  club     Club   @relation(fields: [clubId], references: [id])
+  goals    Goal[]
+}
+
+model Fixture {
+  id         Int      @id @default(autoincrement())
+  date       DateTime
+  homeClubId Int
+  awayClubId Int
+  homeClub   Club     @relation("HomeClub", fields: [homeClubId], references: [id])
+  awayClub   Club     @relation("AwayClub", fields: [awayClubId], references: [id])
+  result     Result?
+  goals      Goal[]
+}
+
+model Result {
+  id        Int     @id @default(autoincrement())
+  fixtureId Int     @unique
+  homeScore Int
+  awayScore Int
+  fixture   Fixture @relation(fields: [fixtureId], references: [id])
+  clubId    Int
+  club      Club    @relation(fields: [clubId], references: [id])
+}
+
+model Standing {
+  id     Int  @id @default(autoincrement())
+  clubId Int
+  points Int
+  club   Club @relation(fields: [clubId], references: [id])
+}
+
+model State {
+  id    Int    @id @default(autoincrement())
+  name  String
+  clubs Club[]
+}
+
+model Video {
+  id         Int      @id @default(autoincrement())
+  title      String
+  url        String
+  uploadedAt DateTime @default(now())
+}
+
+model Goal {
+  id        Int     @id @default(autoincrement())
+  minute    Int
+  playerId  Int
+  fixtureId Int
+  player    Player  @relation(fields: [playerId], references: [id])
+  fixture   Fixture @relation(fields: [fixtureId], references: [id])
+}

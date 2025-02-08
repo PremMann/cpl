@@ -22,6 +22,7 @@ export default function Header() {
         { label: 'Videos', href: '/videos' },
         { label: 'Download', href: '/downloads' },
         { label: 'Contact US', href: '/contacts' },
+        { label: 'Admin', href: '/admin' },
     ];
 
   const pathname = usePathname();

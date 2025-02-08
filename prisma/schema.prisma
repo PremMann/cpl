@@ -111,9 +111,10 @@ model Gameweek {
 }
 
 model User {
-  id           Int    @id @default(autoincrement())
-  username     String @unique
+  id           Int     @id @default(autoincrement())
+  username     String? @unique
   passwordHash String
-  role         String @default("fan") // Possible values: "admin", "fan"
-  email        String @unique
+  role         String  @default("fan")
+  email        String  @unique
+  name         String?
 }

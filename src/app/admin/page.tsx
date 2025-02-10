@@ -1,5 +1,9 @@
 import prisma from '@/lib/db';
 import { revalidatePath } from 'next/cache';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
+// import { addPost } from '@/actions/createUser';
 
 export default async function page() {
     const users = await prisma.user.findMany();
@@ -24,38 +28,52 @@ export default async function page() {
     };
    
     return (
-        <div>
+        <div className='flex flex-col gap-4 items-center flex-wrap items-center content-center p-4'>
             <h1>Admin Page</h1>
-
-            <form action={addPost}>
+            <form  
+                action={addPost}
+                className='flex flex-col gap-4 w-1/2 justify-center items-left'
+            >
                 <h2>Add New Post</h2>
-                <label>
-                    Title:
-                    <input type="text" name="title" required />
-                </label>
-                <label>
-                    Content:
-                    <textarea name="content" required></textarea>
-                </label>
-                <button type="submit">Add Post</button>
+                <label> Title: </label>
+                    <Input 
+                        type="text" 
+                        name="title" 
+                        placeholder='Title'
+                        required />
+                
+                <label>Content:</label>
+                <textarea
+                    className="border border-gray-300 rounded-md p-2"
+                    name="content" 
+                    placeholder='Content'
+                    required>
+                    
+                </textarea>
+                
+                <Button type="submit">Add Post</Button>
             </form>
-
-            <h2>Users</h2>
-            <ul>
-                {users.map((user) => (
-                    <li key={user.id}>
-                        {user.email}
-                    </li>
-                ))}
-            </ul>
-            <h2>Posts</h2>
-            <ul>
-                {Post.map((post) => (
-                    <li key={post.id}>
-                        {post.title}
-                    </li>
-                ))}
-            </ul>
+            <div className="flex flex-col gap-4 w-1/2 justify-center items-left">
+               
+                <h2 className='self-center'>Posts</h2>
+                <ul className='flex flex-col gap-1'>
+                    {Post.map((post) => (
+                        <li key={post.id}>
+                            {post.title}
+                            : {post.content}
+                        </li>
+                        
+                    ))}
+                </ul>
+                <h2 className='selft-center'>Users</h2>
+                <ul>
+                    {users.map((user) => (
+                        <li key={user.id}>
+                            {user.email}
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 

@@ -1,33 +1,62 @@
 import prisma from '@/lib/db';
+import { revalidatePath } from 'next/cache';
 
-async function fetchUsers() {
-  const users = await prisma.user.findMany();
-  return users;
-}
+export default async function page() {
+    const users = await prisma.user.findMany();
+    const Post = await prisma.post.findMany();
 
-async function fetchPosts() {
-  const posts = await prisma.post.findMany();
-  return posts;
-}
+    const addPost = async (formData: FormData) => {
+        "use server";
+        const title = formData.get('title') as string;
+        const content = formData.get('content') as string;
 
-export default async function UserPage() {
-  const users = await fetchUsers();
-  const posts = await fetchPosts();
+        await prisma.post.create({
+            data: {
+                title: title as string,
+                content: content as string,
+                authorId: 1,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+                published: true,
+            },
+        });
+        revalidatePath('/admin');
+    };
+   
+    return (
+        <div>
+            <h1>Admin Page</h1>
 
-  return (
-    <div>
-      <h1>Users</h1>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>{user.username} - {user.email}</li>
-        ))}
-      </ul>
-      <h1>Posts</h1>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>{post.title} - {post.content}</li>
-        ))}
-      </ul>
-    </div>
-  );
+            <form action={addPost}>
+                <h2>Add New Post</h2>
+                <label>
+                    Title:
+                    <input type="text" name="title" required />
+                </label>
+                <label>
+                    Content:
+                    <textarea name="content" required></textarea>
+                </label>
+                <button type="submit">Add Post</button>
+            </form>
+
+            <h2>Users</h2>
+            <ul>
+                {users.map((user) => (
+                    <li key={user.id}>
+                        {user.email}
+                    </li>
+                ))}
+            </ul>
+            <h2>Posts</h2>
+            <ul>
+                {Post.map((post) => (
+                    <li key={post.id}>
+                        {post.title}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+
 }

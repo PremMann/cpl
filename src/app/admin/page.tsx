@@ -1,13 +1,13 @@
+// filepath: /Users/premmann/Next/cpl/src/app/admin/page.tsx
 import prisma from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
-// import { addPost } from '@/actions/createUser';
+import Tabs from '@/components/Tabs';
 
 export default async function page() {
     const users = await prisma.user.findMany();
-    const Post = await prisma.post.findMany();
+    const posts = await prisma.post.findMany();
 
     const addPost = async (formData: FormData) => {
         "use server";
@@ -26,7 +26,7 @@ export default async function page() {
         });
         revalidatePath('/admin');
     };
-   
+
     return (
         <div className='flex flex-col gap-4 items-center flex-wrap items-center content-center p-4'>
             <h1>Admin Page</h1>
@@ -36,11 +36,11 @@ export default async function page() {
             >
                 <h2>Add New Post</h2>
                 <label> Title: </label>
-                    <Input 
-                        type="text" 
-                        name="title" 
-                        placeholder='Title'
-                        required />
+                <Input 
+                    type="text" 
+                    name="title" 
+                    placeholder='Title'
+                    required />
                 
                 <label>Content:</label>
                 <textarea
@@ -48,33 +48,11 @@ export default async function page() {
                     name="content" 
                     placeholder='Content'
                     required>
-                    
                 </textarea>
                 
                 <Button type="submit">Add Post</Button>
             </form>
-            <div className="flex flex-col gap-4 w-1/2 justify-center items-left">
-               
-                <h2 className='self-center'>Posts</h2>
-                <ul className='flex flex-col gap-1'>
-                    {Post.map((post) => (
-                        <li key={post.id}>
-                            {post.title}
-                            : {post.content}
-                        </li>
-                        
-                    ))}
-                </ul>
-                <h2 className='selft-center'>Users</h2>
-                <ul>
-                    {users.map((user) => (
-                        <li key={user.id}>
-                            {user.email}
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            <Tabs users={users} posts={posts} />
         </div>
     );
-
 }

@@ -22,12 +22,12 @@ model League {
   name        String
   startDate   DateTime
   endDate     DateTime
-  status      String      @default("active") // Possible values: "active", "completed", "paused"
-  currentWeek Int         @default(1) // Tracks current matchweek
-  teams       Team[]      @relation("LeagueTeams")
+  status      String      @default("active")
+  currentWeek Int         @default(1)
+  Gameweek    Gameweek[]
   matches     Match[]
   Standings   Standings[]
-  Gameweek    Gameweek[]
+  teams       Team[]      @relation("LeagueTeams")
 }
 
 model Team {
@@ -37,9 +37,9 @@ model Team {
   stadium     String?
   coach       String?
   foundedYear Int?
-  players     Player[]
-  homeMatches Match[]     @relation("HomeTeam")
   awayMatches Match[]     @relation("AwayTeam")
+  homeMatches Match[]     @relation("HomeTeam")
+  players     Player[]
   standings   Standings[]
   leagues     League[]    @relation("LeagueTeams")
 }
@@ -47,14 +47,14 @@ model Team {
 model Player {
   id           Int          @id @default(autoincrement())
   name         String
-  status       String       @default("active") // Possible values: "active", "injured", "suspended"
-  teamId       Int?
-  team         Team?        @relation(fields: [teamId], references: [id])
   position     String?
+  dateOfBirth  DateTime?
   jerseyNumber Int?
   nationality  String?
-  dateOfBirth  DateTime?
+  status       String       @default("active")
+  teamId       Int?
   matchEvents  MatchEvent[]
+  team         Team?        @relation(fields: [teamId], references: [id])
 }
 
 model Match {
@@ -64,21 +64,21 @@ model Match {
   matchDate   DateTime
   homeScore   Int          @default(0)
   awayScore   Int          @default(0)
-  status      String       @default("scheduled") // Possible values: "scheduled", "ongoing", "completed"
+  status      String       @default("scheduled")
   leagueId    Int
-  league      League       @relation(fields: [leagueId], references: [id])
-  homeTeam    Team         @relation("HomeTeam", fields: [homeTeamId], references: [id])
-  awayTeam    Team         @relation("AwayTeam", fields: [awayTeamId], references: [id])
-  matchEvents MatchEvent[]
-  Gameweek    Gameweek?    @relation(fields: [gameweekId], references: [id])
   gameweekId  Int?
+  awayTeam    Team         @relation("AwayTeam", fields: [awayTeamId], references: [id])
+  Gameweek    Gameweek?    @relation(fields: [gameweekId], references: [id])
+  homeTeam    Team         @relation("HomeTeam", fields: [homeTeamId], references: [id])
+  league      League       @relation(fields: [leagueId], references: [id])
+  matchEvents MatchEvent[]
 }
 
 model MatchEvent {
   id        Int     @id @default(autoincrement())
   matchId   Int
   playerId  Int?
-  eventType String  @default("goal") // Possible values: "goal", "yellow_card", "red_card", "substitution"
+  eventType String  @default("goal")
   minute    Int
   match     Match   @relation(fields: [matchId], references: [id])
   player    Player? @relation(fields: [playerId], references: [id])
@@ -87,9 +87,7 @@ model MatchEvent {
 model Standings {
   id             Int    @id @default(autoincrement())
   teamId         Int
-  team           Team   @relation(fields: [teamId], references: [id])
   leagueId       Int
-  league         League @relation(fields: [leagueId], references: [id])
   played         Int    @default(0)
   wins           Int    @default(0)
   draws          Int    @default(0)
@@ -98,11 +96,13 @@ model Standings {
   goalsAgainst   Int    @default(0)
   goalDifference Int    @default(0)
   points         Int    @default(0)
+  league         League @relation(fields: [leagueId], references: [id])
+  team           Team   @relation(fields: [teamId], references: [id])
 }
 
 model Gameweek {
   id         Int      @id @default(autoincrement())
-  weekNumber Int // Matchweek number (1, 2, 3, ...)
+  weekNumber Int
   startDate  DateTime
   endDate    DateTime
   leagueId   Int
@@ -112,9 +112,9 @@ model Gameweek {
 
 model User {
   id           Int     @id @default(autoincrement())
-  username     String? @unique
+  email        String  @unique
   passwordHash String
   role         String  @default("fan")
-  email        String  @unique
+  username     String? @unique
   name         String?
 }

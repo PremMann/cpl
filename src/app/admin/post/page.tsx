@@ -3,12 +3,11 @@ import prisma from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { loadPost, loadUser, addPost } from '@/actions/data';
+import { loadPost, addPost } from '@/actions/data';
 import { Suspense } from 'react';
 
 export default async function page() {
     const posts = await loadPost();
-    const users = await loadUser();
 
     return (
         <div className='flex flex-col gap-4 items-center flex-wrap items-center content-center p-4'>
@@ -51,23 +50,6 @@ export default async function page() {
                     )}
                 </ul>
                </div>
-            </Suspense>
-
-            <Suspense fallback={<div>Loading...</div>}>
-                <div>
-                    <h2>Users</h2>
-                    <ul>
-                        {Array.isArray(users) ? (
-                            users.map((user) => (
-                                <li key={user.id}>
-                                    {user.email}
-                                </li>
-                            ))
-                        ) : (
-                            <div>{users.message}</div>
-                        )}
-                    </ul>
-                </div>
             </Suspense>
         </div>
     );

@@ -42,4 +42,15 @@ export async function addPost(formData: FormData) {
     revalidatePath('/admin');
 }
 
+export async function loadTeams() {
+    try {
+        const teams = await prisma.team.findMany();
+        return teams;
+    } catch (error) {
+        return {
+            message: 'An error occurred while loading the teams',
+        };
+    }
+}
+
 

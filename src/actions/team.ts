@@ -4,10 +4,18 @@ import { revalidatePath } from "next/cache";
 
 export async function loadAllTeams() {
   try {
-    const teams = await prisma.team.findMany();
+    const teams = await prisma.team.findMany({
+      include: {
+        homeMatches: true,
+        awayMatches: true,
+        standings: true,
+        leagues: true,
+      },
+    });
     
     return teams;
   } catch (error) {
+    console.error("Error loading teams:", error);
     return {
       message: "An error occurred while loading the teams",
     };
@@ -37,4 +45,17 @@ export async function addTeam(formData: FormData) {
         console.log(error);
     }
 
+}
+
+export async function loadPlayers() {
+  try {
+ 
+    const players = await prisma.player.findMany();
+    
+    return players;
+  } catch (error) {
+    return {
+      message: "An error occurred while loading the players",
+    };
+  }
 }

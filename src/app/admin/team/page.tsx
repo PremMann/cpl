@@ -1,13 +1,10 @@
-// filepath: /Users/premmann/Next/cpl/src/app/admin/page.tsx
-import prisma from '@/lib/db';
-import { revalidatePath } from 'next/cache';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { addTeam, loadAllTeams } from '@/actions/team';
-
+import { addTeam } from '@/actions/team';
+import { loadAllTeams } from '@/actions/team';
 export default async function page() {
 
-    const teams = await loadAllTeams();
+const teams = await loadAllTeams();
 
     return (
         <div className='flex flex-col gap-4 items-center flex-wrap items-center content-center p-4'>
@@ -37,17 +34,19 @@ export default async function page() {
 
             <div>
                 <h2>Teams</h2>
+
                 <ul>
-                    {Array.isArray(teams) ? (
-                        teams.map((team) => (
-                            <li key={team.id}>
-                                {team.name}
-                            </li>
-                        ))
-                    ) : (
-                        <div>{teams.message}</div>
-                    )}
+                {Array.isArray(teams) ? (
+                    teams.map((team) => (
+                        <li key={team.id}>
+                            {team.name}
+                        </li>
+                    ))
+                ) : (
+                    <div>{teams.message}</div>
+                )}
                 </ul>
+                
             </div>
 
         </div>

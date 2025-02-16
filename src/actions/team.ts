@@ -54,6 +54,7 @@ export async function loadPlayers() {
     
     return players;
   } catch (error) {
+    console.error("Error loading players:", error);
     return {
       message: "An error occurred while loading the players",
     };

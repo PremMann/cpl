@@ -7,6 +7,7 @@ export async function loadPost() {
         const post = await prisma.post.findMany();
         return post;
     } catch (error) {
+        console.error('Error loading post:', error);
         return {
             message: 'An error occurred while loading the post',
         };
@@ -18,6 +19,7 @@ export async function loadUser() {
         const user = await prisma.user.findMany();
         return user;
     } catch (error) {
+        console.error('Error loading user:', error);
         return {
             message: 'An error occurred while loading the user',
         };
@@ -47,6 +49,7 @@ export async function loadTeams() {
         const teams = await prisma.team.findMany();
         return teams;
     } catch (error) {
+        console.error('Error loading teams:', error);
         return {
             message: 'An error occurred while loading the teams',
         };

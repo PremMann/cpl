@@ -1,6 +1,4 @@
-// filepath: /Users/premmann/Next/cpl/src/app/admin/page.tsx
-import prisma from '@/lib/db';
-import { revalidatePath } from 'next/cache';
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { loadPost, addPost } from '@/actions/data';

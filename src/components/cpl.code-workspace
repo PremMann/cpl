@@ -5,6 +5,12 @@
 		},
 		{
 			"path": "../../../docker/docker-app-001"
+		},
+		{
+			"path": "../../../blogr-nextjs-prisma"
+		},
+		{
+			"path": "../../../nextjs-dashboard"
 		}
 	],
 	"settings": {}

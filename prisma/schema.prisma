@@ -1,49 +1,120 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+generator client {
+  provider = "prisma-client-js"
+}
 
 datasource db {
   provider = "postgresql"
   url      = env("POSTGRES_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
 model Post {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   title     String
   content   String?
-  published Boolean   @default(false)
-  author    User      @relation(fields: [authorId], references: [id])
+  published Boolean  @default(false)
   authorId  Int
-  comments  Comment[]
 }
 
-model Profile {
-  id     Int     @id @default(autoincrement())
-  bio    String?
-  user   User    @relation(fields: [userId], references: [id])
-  userId Int     @unique
+model League {
+  id          Int         @id @default(autoincrement())
+  name        String
+  startDate   DateTime
+  endDate     DateTime
+  status      String      @default("active")
+  currentWeek Int         @default(1)
+  Gameweek    Gameweek[]
+  matches     Match[]
+  Standings   Standings[]
+  teams       Team[]      @relation("LeagueTeams")
+}
+
+model Team {
+  id          Int         @id @default(autoincrement())
+  name        String
+  logoUrl     String?
+  stadium     String?
+  coach       String?
+  foundedYear Int?
+  awayMatches Match[]     @relation("AwayTeam")
+  homeMatches Match[]     @relation("HomeTeam")
+  players     Player[]
+  standings   Standings[]
+  leagues     League[]    @relation("LeagueTeams")
+}
+
+model Player {
+  id           Int          @id @default(autoincrement())
+  name         String
+  position     String?
+  dateOfBirth  DateTime?
+  jerseyNumber Int?
+  nationality  String?
+  status       String       @default("active")
+  teamId       Int?
+  matchEvents  MatchEvent[]
+  team         Team?        @relation(fields: [teamId], references: [id])
+}
+
+model Match {
+  id          Int          @id @default(autoincrement())
+  homeTeamId  Int
+  awayTeamId  Int
+  matchDate   DateTime
+  homeScore   Int          @default(0)
+  awayScore   Int          @default(0)
+  status      String       @default("scheduled")
+  leagueId    Int
+  gameweekId  Int?
+  awayTeam    Team         @relation("AwayTeam", fields: [awayTeamId], references: [id])
+  Gameweek    Gameweek?    @relation(fields: [gameweekId], references: [id])
+  homeTeam    Team         @relation("HomeTeam", fields: [homeTeamId], references: [id])
+  league      League       @relation(fields: [leagueId], references: [id])
+  matchEvents MatchEvent[]
+}
+
+model MatchEvent {
+  id        Int     @id @default(autoincrement())
+  matchId   Int
+  playerId  Int?
+  eventType String  @default("goal")
+  minute    Int
+  match     Match   @relation(fields: [matchId], references: [id])
+  player    Player? @relation(fields: [playerId], references: [id])
+}
+
+model Standings {
+  id             Int    @id @default(autoincrement())
+  teamId         Int
+  leagueId       Int
+  played         Int    @default(0)
+  wins           Int    @default(0)
+  draws          Int    @default(0)
+  losses         Int    @default(0)
+  goalsFor       Int    @default(0)
+  goalsAgainst   Int    @default(0)
+  goalDifference Int    @default(0)
+  points         Int    @default(0)
+  league         League @relation(fields: [leagueId], references: [id])
+  team           Team   @relation(fields: [teamId], references: [id])
+}
+
+model Gameweek {
+  id         Int      @id @default(autoincrement())
+  weekNumber Int
+  startDate  DateTime
+  endDate    DateTime
+  leagueId   Int
+  league     League   @relation(fields: [leagueId], references: [id])
+  matches    Match[]
 }
 
 model User {
-  id      Int      @id @default(autoincrement())
-  email   String   @unique
-  name    String?
-  posts   Post[]
-  profile Profile?
-}
-
-model Comment {
-  id      Int    @id @default(autoincrement())
-  content String
-  post    Post   @relation(fields: [postId], references: [id])
-  postId  Int
-  title   String
+  id           Int     @id @default(autoincrement())
+  email        String  @unique
+  passwordHash String
+  role         String  @default("fan")
+  username     String? @unique
+  name         String?
 }

@@ -43,7 +43,7 @@ export default function Footer() {
                 <small className="text-center block py-5 text-sm text-gray-500">© 2024 CPL. Recreate.</small>
             </div>
 
-            <div className='w-full flex flex-row gap-1 items-center justify-center'>
+            <div className='w-full flex flex-row gap-1 items-center justify-center flex-wrap p-5'>
                 {socials.map((social, index) => (
                     <div className="flex justify-center gap-3 group relative w-fit rounded-full" key={index}>
                      <div className="group ease-in-out duration-400 -translate-y-4 pointer-events-none transition-all group-hover:-translate-y-10 dark:bg-slate-700 absolute left-1/2 z-50 flex -translate-x-1/2 flex-col items-center rounded-sm text-center text-sm text-slate-300 before:-top-2">

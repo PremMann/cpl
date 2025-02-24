@@ -3,7 +3,7 @@ import teamImg from "@/../public/club/astonvila.jpg";
 import Image from 'next/image';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export default function Page({ params } : { params: { clubsId: number } }) {
+export default function Page() {
   const tabs = [
     { label: 'overview', content: 'Overview' },
     { label: 'players', content: 'Players' },
@@ -33,7 +33,7 @@ export default function Page({ params } : { params: { clubsId: number } }) {
           </TabsList>
 
           {tabs.map((tab, index) => (
-            <TabsContent key={index} value={tab.label} className="bg-white mt-[-4px]">{tab.content} {params.clubsId}</TabsContent>
+            <TabsContent key={index} value={tab.label} className="bg-white mt-[-4px]">{tab.content}</TabsContent>
           ))}
         </Tabs>
     </main>

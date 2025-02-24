@@ -33,7 +33,7 @@ export default function Page({ params } : { params: { clubsId: number } }) {
           </TabsList>
 
           {tabs.map((tab, index) => (
-            <TabsContent key={index} value={tab.label} className="bg-white mt-[-4px]">{tab.content}</TabsContent>
+            <TabsContent key={index} value={tab.label} className="bg-white mt-[-4px]">{tab.content} {params.clubsId}</TabsContent>
           ))}
         </Tabs>
     </main>

@@ -1,7 +1,8 @@
 import { Fixtres, columns } from "./columns"
 import { DataTable } from "./data-table"
 import mainLogo from "@/../public/main.jpg"
-import { ComboboxDemo } from "@/components/ui/combobox"
+import { ComboboxDemo } from "@/components/ui/combobox";
+
 async function getData(): Promise<Fixtres[]> {
   
   return [

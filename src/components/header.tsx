@@ -49,7 +49,7 @@ export default function Header() {
     <div>
        <header ref={navRef} className="flex md:flex-col justify-between items-center w-full bg-black md:bg-black">
       {/* Top Section */}
-      <div className="flex flex-row justify-between w-full py-4 px-4 md:px-7">
+      <div className="flex flex-row justify-between w-full py-4 px-4 md:px-7 md:bg-white">
         <div>
           <Link href="/">
             <Image src={mainLogo} alt="logo" width={50} height={50} className="md:w-[100px] md:h-[100px] bg-white" />

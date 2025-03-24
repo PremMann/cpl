@@ -39,7 +39,7 @@ export async function addTeam(formData: FormData) {
         foundedYear,
       },
     });
-    revalidatePath("/admin/team");
+    revalidatePath("/clubs");
   }
     catch (error) {
         console.log(error);

@@ -31,7 +31,7 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       if (navRef.current) {
-        if (window.scrollY > 135) {
+        if (window.scrollY > 250) {
           navRef.current.classList.add('sticky-nav');
         } else {
           navRef.current.classList.remove('sticky-nav');
@@ -100,7 +100,7 @@ export default function Header() {
         <header className={`flex md:flex-col justify-between items-center w-full md:hidden w-full`}>
 
       {/* Sticky Navigation */}
-      <nav className={`bg-[#313b48] mr-4 w-full flex flex-col md:flex-row justify-center py-2 md:py-4 shadow-md  ${isMenuOpen ? 'flex md:sticky-nav-sab' : 'hidden'}`}>
+      <nav className={`bg-[#313b48] mr-4 w-full flex flex-col md:flex-row justify-center py-2 md:py-4 shadow-md  ${isMenuOpen ? 'flex md:sticky-nav-sab' : 'hidden md:sticky-nav-sab'}`}>
         <ul className={`flex-col md:flex-row items-center md:flex gap-2 md:gap-5 text-[12px] md:text-[14px md:flex `}>
           {navLink.map((link, index) => (
             <li key={index} className='border-b border-b-[#13130D last:border-none last:mb-[-2px] '>

@@ -3,8 +3,6 @@ import mainLogo from "@/../public/main.jpg"
 import { ComboboxDemo } from "@/components/ui/combobox"
 import { DataTable } from "@/data/table/data-table";
 
-
-
    async function getData(): Promise<Results[]> {
     return [
       {

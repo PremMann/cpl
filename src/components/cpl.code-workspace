@@ -11,6 +11,15 @@
 		},
 		{
 			"path": "../../../nextjs-dashboard"
+		},
+		{
+			"path": "../../../../ci/ci-news"
+		},
+		{
+			"path": "../../../../ci/ci-mvc"
+		},
+		{
+			"path": "../../../next-api"
 		}
 	],
 	"settings": {}

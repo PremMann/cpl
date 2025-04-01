@@ -4,7 +4,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { loadAllTeams } from "@/actions/team";
 import Link from 'next/link';
 
+
 export default async function Club() {
+
+
   const teams = await loadAllTeams();
 
   return (

@@ -1,11 +1,7 @@
 import prisma from '@/lib/db';
 
-export async function GET(request: Request) {
+export async function GET() {
     // For example, fetch data from your DB here
-    const users = [
-      { id: 1, name: 'Alice' },
-      { id: 2, name: 'Bob' }
-    ];
     const teams = await prisma.team.findMany({
       include: {
         homeMatches: true,

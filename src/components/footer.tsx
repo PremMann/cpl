@@ -38,9 +38,9 @@ export default function Footer() {
         }
     ];
     return (
-        <footer className="mt-auto border-t flex flex-row w-full bg-[#313a47]">
+        <footer className="mt-auto border-t flex flex-row w-full bg-[#f03134]">
             <div className='w-full'>
-                <small className="text-center block py-5 text-sm text-gray-500">© 2024 CPL. Recreate.</small>
+                <small className="text-center block py-5 text-sm text-white">© 2024 CPL. Recreate.</small>
             </div>
 
             <div className='w-full flex flex-row gap-1 items-center justify-center flex-wrap p-5'>

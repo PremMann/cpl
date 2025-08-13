@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import mainLogo from './../../public/premier_league.svg';
+// import mainLogo from './../../public/premier_league.svg';
+import mainLogo from './../../public/APMF-logo_final.png';
 import league_1 from './../../public/league_1.svg';
 import league_2 from './../../public/league_2.svg';
 import league_cup from './../../public/league_cup.svg';
@@ -16,10 +17,10 @@ import league_cup from './../../public/league_cup.svg';
   import {
     DropdownMenu,
     DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger
   } from './ui/dropdown-menu'
 
 export default function Header() {
@@ -30,10 +31,6 @@ export default function Header() {
         { label: 'PRODUCTS', href: '/fixtures' },
         { label: 'PROMOTION', href: '/results' },
         { label: 'CONTACT US', href: '/standings' },
-        { label: 'Stats', href: '/stats' },
-        { label: 'Videos', href: '/videos' },
-        { label: 'Download', href: '/downloads' },
-        { label: 'Contact US', href: '/contacts' },
         { label: 'Admin', href: '/admin' },
     ];
 
@@ -59,23 +56,27 @@ export default function Header() {
 
   return (
     <div>
-       <header ref={navRef} className="flex md:flex-col justify-between items-center w-full bg-black md:bg-[#f03134]">
+       <header ref={navRef} className="flex md:flex-col justify-between items-center w-full bg-black md:bg-gray-100">
       {/* Top Section */}
-      <div className="flex flex-row justify-between w-full py-4 px-4 md:px-7">
-        <div>
-          <Link href="/">
-            <Image src={mainLogo} alt="logo" width={50} height={50} className="md:w-[100px] md:h-[100px] bg-white" />
+      <div className="flex flex-row-reverse justify-between w-full py-1 px-1 md:px-7 text-sm"> 
+        <div className="flex flex-row items-center gap-x-1 md:gap-x-1">
+          <Link href="/" 
+          className="text-black px-3 py-1 rounded transition-colors duration-200 hover:bg-white hover:text-[#f03134]">
+            Loan Car
           </Link>
-        </div>
-        <div className="flex flex-row items-center gap-x-2 md:gap-x-5">
-          <Link href="/">
-            <Image src={league_1} alt="logo" width={20} height={20} className="md:w-[35px] md:h-[35px]" />
+            <Link
+            href="/"
+            className="text-black px-3 py-1 rounded transition-colors duration-200 hover:bg-white hover:text-[#f03134]"
+            >
+            Apply Loan
+            </Link>
+          <Link href="/" 
+          className="text-black px-3 py-1 rounded transition-colors duration-200 hover:bg-white hover:text-[#f03134]">
+            Career
           </Link>
-          <Link href="/">
-            <Image src={league_2} alt="logo" width={20} height={20} className="md:w-[35px] md:h-[35px]" />
-          </Link>
-          <Link href="/">
-            <Image src={league_cup} alt="logo" width={20} height={20} className="md:w-[35px] md:h-[35px]" />
+          <Link href="/"
+          className="text-black px-3 py-1 rounded transition-colors duration-200 hover:bg-white hover:text-[#f03134]">
+            KH
           </Link>
         </div>
       </div>
@@ -90,7 +91,9 @@ export default function Header() {
             <FontAwesomeIcon icon={faBars} size="lg" />
           </button>
         </div>
-        <ul className={`flex-col md:flex-row items-center md:flex gap-2 md:gap-5 text-[12px] md:text-[14px] hidden md:flex`}>
+       
+          
+             <ul className={`flex-col md:flex-row items-center md:flex gap-2 md:gap-5 text-[12px] md:text-[14px] hidden md:flex`}>
           {navLink.map((link, index) => (
             <li key={index}>
               <Link
@@ -102,7 +105,7 @@ export default function Header() {
               >
                 {link.label}
 
-                <DropdownMenu>
+                {/* <DropdownMenu>
                 <DropdownMenuTrigger>Open</DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
@@ -112,12 +115,13 @@ export default function Header() {
                   <DropdownMenuItem>Team</DropdownMenuItem>
                   <DropdownMenuItem>Subscription</DropdownMenuItem>
                 </DropdownMenuContent>
-              </DropdownMenu>
-              
+              </DropdownMenu> */}
+
               </Link>
             </li>
           ))}
         </ul>
+       
       </nav>
 
         </header>

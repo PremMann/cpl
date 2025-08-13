@@ -10,14 +10,26 @@ import league_1 from './../../public/league_1.svg';
 import league_2 from './../../public/league_2.svg';
 import league_cup from './../../public/league_cup.svg';
 
+
+
+
+  import {
+    DropdownMenu,
+    DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+  } from './ui/dropdown-menu'
+
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navLink = [
         { label: 'Home', href: '/' },
-        { label: 'Club', href: '/clubs' },
-        { label: 'Fixtures', href: '/fixtures' },
-        { label: 'Results', href: '/results' },
-        { label: 'Standings', href: '/standings' },
+        { label: 'About US', href: '/clubs' },
+        { label: 'PRODUCTS', href: '/fixtures' },
+        { label: 'PROMOTION', href: '/results' },
+        { label: 'CONTACT US', href: '/standings' },
         { label: 'Stats', href: '/stats' },
         { label: 'Videos', href: '/videos' },
         { label: 'Download', href: '/downloads' },
@@ -47,7 +59,7 @@ export default function Header() {
 
   return (
     <div>
-       <header ref={navRef} className="flex md:flex-col justify-between items-center w-full bg-black md:bg-black">
+       <header ref={navRef} className="flex md:flex-col justify-between items-center w-full bg-black md:bg-[#f03134]">
       {/* Top Section */}
       <div className="flex flex-row justify-between w-full py-4 px-4 md:px-7">
         <div>
@@ -69,7 +81,7 @@ export default function Header() {
       </div>
 
       {/* Sticky Navigation */}
-      <nav ref={navRef} className="bg-black w-fit md:w-full flex flex-col md:flex-row justify-center py-2 md:py-4 px-4 md:px-7 shadow-md">
+      <nav ref={navRef} className="bg-[#f03134] w-fit md:w-full flex flex-col md:flex-row justify-center py-2 md:py-4 px-4 md:px-7 shadow-md">
         <div className="flex justify-between items-center w-full md:hidden">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -89,6 +101,19 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.label}
+
+                <DropdownMenu>
+                <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                  <DropdownMenuItem>Billing</DropdownMenuItem>
+                  <DropdownMenuItem>Team</DropdownMenuItem>
+                  <DropdownMenuItem>Subscription</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              
               </Link>
             </li>
           ))}
@@ -112,7 +137,9 @@ export default function Header() {
                 } text-base leading-[48px] md:text-[18px] px-4 hover:text-[#773e75]`}
               >
                 {link.label}
-              </Link>
+
+                
+                            </Link>
             </li>
           ))}
         </ul>

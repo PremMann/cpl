@@ -6,22 +6,19 @@ import { usePathname } from 'next/navigation';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import mainLogo from './../../public/premier_league.svg';
-import mainLogo from './../../public/APMF-logo_final.png';
-import league_1 from './../../public/league_1.svg';
-import league_2 from './../../public/league_2.svg';
-import league_cup from './../../public/league_cup.svg';
+// import mainLogo from './../../public/APMF-logo_final.png';
+// import league_1 from './../../public/league_1.svg';
+// import league_2 from './../../public/league_2.svg';
+// import league_cup from './../../public/league_cup.svg';
 
-
-
-
-  import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger
-  } from './ui/dropdown-menu'
+  // import {
+  //   DropdownMenu,
+  //   DropdownMenuContent,
+  //   DropdownMenuItem,
+  //   DropdownMenuLabel,
+  //   DropdownMenuSeparator,
+  //   DropdownMenuTrigger
+  // } from './ui/dropdown-menu'
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -24,12 +24,12 @@ export default function Header() {
       label: 'ABOUT US',
       href: '/about',
       children: [
-        { label: 'Our History', href: '/' },
-        { label: 'Vision & Mission', href: '/about/vision-and-mission' },
-        { label: 'Board of Directors', href: '/about/board-of-directors' },
-        { label: 'Management Team', href: '/about/management-team' },
-        { label: 'Organizational Chart', href: '/clubs/organizational-chart' },
-        { label: 'Annual Report', href: '/clubs/annual-report' }
+        { label: 'Our History', href: '/aboutus' },
+        { label: 'Vision & Mission', href: '/aboutus/vision-and-mission' },
+        { label: 'Board of Directors', href: '/aboutus/board-of-directors' },
+        { label: 'Management Team', href: '/aboutus/management-team' },
+        { label: 'Organizational Chart', href: '/aboutus/organizational-chart' },
+        { label: 'Annual Report', href: '/aboutus/annual-report' }
       ]
     },
     {

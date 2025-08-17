@@ -45,7 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="text-zinc-900 font-sans">
+       <body className={`${openSans.className} antialiased`}>
         <NextUIProvider>
           <Container>
             <Header />

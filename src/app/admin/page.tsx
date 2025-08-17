@@ -3,6 +3,27 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { addPost, loadPost, loadUser } from "@/actions/data";
 
+// Types and type guards
+type Post = { id: string | number; title: string; content: string };
+type User = { id: string | number; email: string };
+
+function isPostArray(val: unknown): val is Post[] {
+  return Array.isArray(val) && val.every((p) => {
+    const o = p as Record<string, unknown>;
+    return (typeof o.id === "string" || typeof o.id === "number")
+      && typeof o.title === "string"
+      && typeof o.content === "string";
+  });
+}
+
+function isUserArray(val: unknown): val is User[] {
+  return Array.isArray(val) && val.every((u) => {
+    const o = u as Record<string, unknown>;
+    return (typeof o.id === "string" || typeof o.id === "number")
+      && typeof o.email === "string";
+  });
+}
+
 export default function AdminPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
@@ -75,19 +96,19 @@ export default function AdminPage() {
 
 // Server component sections for streaming with Suspense
 async function PostsSection() {
-  const posts = await loadPost();
+  const postsData = await loadPost();
 
-  if (!Array.isArray(posts) || posts.length === 0) {
+  if (!isPostArray(postsData) || postsData.length === 0) {
     return (
       <div className="p-5 text-sm text-gray-600">
-        {Array.isArray(posts) ? "No posts yet." : posts?.message ?? "Unable to load posts."}
+        {isPostArray(postsData) ? "No posts yet." : (postsData as { message?: string })?.message ?? "Unable to load posts."}
       </div>
     );
   }
 
   return (
     <ul className="divide-y divide-gray-100">
-      {posts.map((post: any) => (
+      {postsData.map((post) => (
         <li key={post.id} className="p-5 hover:bg-gray-50 transition-colors">
           <h3 className="font-medium text-gray-900">{post.title}</h3>
           <p className="text-sm text-gray-700 mt-1">{post.content}</p>
@@ -98,19 +119,19 @@ async function PostsSection() {
 }
 
 async function UsersSection() {
-  const users = await loadUser();
+  const usersData = await loadUser();
 
-  if (!Array.isArray(users) || users.length === 0) {
+  if (!isUserArray(usersData) || usersData.length === 0) {
     return (
       <div className="p-5 text-sm text-gray-600">
-        {Array.isArray(users) ? "No users found." : users?.message ?? "Unable to load users."}
+        {isUserArray(usersData) ? "No users found." : (usersData as { message?: string })?.message ?? "Unable to load users."}
       </div>
     );
   }
 
   return (
     <ul className="divide-y divide-gray-100">
-      {users.map((user: any) => (
+      {usersData.map((user) => (
         <li key={user.id} className="p-5 flex items-center justify-between">
           <span className="text-sm text-gray-900">{user.email}</span>
           <span className="text-xs text-gray-500">ID: {user.id}</span>

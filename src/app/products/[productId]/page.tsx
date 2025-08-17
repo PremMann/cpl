@@ -88,9 +88,10 @@ export function generateStaticParams(): { productId: string }[] {
 }
 
 export async function generateMetadata(
-  { params }: { params: { productId: string } }
+  { params }: { params: Promise<{ productId: string }> }
 ): Promise<Metadata> {
-  const product = PRODUCTS[params.productId];
+  const { productId } = await params;
+  const product = PRODUCTS[productId];
   if (!product) return { title: "Product not found | APMF" };
   return {
     title: `${product.name} | APMF`,
@@ -103,10 +104,10 @@ export async function generateMetadata(
   };
 }
 
-export default function ProductDetails(
-  { params }: { params: { productId: string } }
+export default async function ProductDetails(
+  { params }: { params: Promise<{ productId: string }> }
 ) {
-  const { productId } = params;
+  const { productId } = await params;
   const product = PRODUCTS[productId];
   if (!product) return notFound();
 

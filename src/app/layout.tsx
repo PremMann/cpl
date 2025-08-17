@@ -4,10 +4,38 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Container from "@/components/container";
 import { NextUIProvider } from "@nextui-org/system";
+import { Open_Sans } from "next/font/google";
+
+const openSans = Open_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-open-sans",
+});
 
 export const metadata: Metadata = {
-  title: "CPL",
-  description: "CPL description", 
+  title: "Active People’s Microfinance Institution Plc",
+  description: "Active People’s Microfinance Institution Plc",
+  keywords: [
+    "APMF",
+    "Active People’s Microfinance Institution Plc",
+    "Microfinance",
+    "Cambodia",
+    "Financial Services",
+    "Loans",
+    "Savings",
+    "Investments"
+  ],
+  icons: {
+    icon: [
+      { url: "/main.png", sizes: "180x180", type: "image/png" },
+      { url: "/main.png", sizes: "180x180", type: "image/png" },
+      { url: "/main.png" },
+    ],
+    apple: [
+      { url: "/main.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -17,8 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* <body className={`${inter.className} bg-white text-zine-900`}> */}
-      <body className="text-zinc-900">
+      <body className="text-zinc-900 font-sans">
         <NextUIProvider>
           <Container>
             <Header />
@@ -26,8 +53,6 @@ export default function RootLayout({
             <Footer />
           </Container>
         </NextUIProvider>
-       
-        
       </body>
     </html>
   );

@@ -83,13 +83,13 @@ const PRODUCTS: Record<string, Product> = {
   },
 };
 
-type Params = { params: { productId: string } };
-
-export function generateStaticParams() {
+export function generateStaticParams(): { productId: string }[] {
   return Object.keys(PRODUCTS).map((productId) => ({ productId }));
 }
 
-export async function generateMetadata({ params }: Params): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: { params: { productId: string } }
+): Promise<Metadata> {
   const product = PRODUCTS[params.productId];
   if (!product) return { title: "Product not found | APMF" };
   return {
@@ -103,7 +103,10 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   };
 }
 
-export default function ProductDetails({ params: { productId } }: Params) {
+export default function ProductDetails(
+  { params }: { params: { productId: string } }
+) {
+  const { productId } = params;
   const product = PRODUCTS[productId];
   if (!product) return notFound();
 

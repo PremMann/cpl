@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/header";
+import Header01 from "@/components/header01";
 import Footer from "@/components/footer";
 import Container from "@/components/container";
 import { NextUIProvider } from "@nextui-org/system";
@@ -49,6 +50,7 @@ export default function RootLayout({
         <NextUIProvider>
           <Container>
             <Header />
+            {/* <Header01 /> */}
             {children}
             <Footer />
           </Container>

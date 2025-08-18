@@ -7,7 +7,6 @@ import { faBars, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import mainLogo from './../../public/main_logo.png';
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -45,118 +44,115 @@ export default function Header() {
       ]
     },
     { label: 'PROMOTION', href: '/promotions' },
-    {
-      label: 'CONTACT US',
-      href: '/contact-us',
-      children: [
-        { label: 'Branch Locator', href: '/contact-us/branch-locator' },
-        { label: 'Business Hour', href: '/contact-us/business-hour' },
-        { label: 'Call Center', href: '/contact-us/call-center' },
-        { label: 'Customer Complaint', href: '/contact-us/customer-complaint' }
-      ]
-    },
+    { label: 'CONTACT US', href: '/contacts' },
     { label: 'Admin', href: '/admin' }
   ];
 
   const baseLinkClass = (href: string) =>
-    `${pathname === href ? 'text-zinc-400 font-bold' : 'text-[#f03134]'} text-[14px] md:text-[18px]`;
+    `${pathname === href ? 'text-red-700 font-bold' : 'text-red-500 font-bold hover:text-red-700'} transition-colors duration-200 text-[15px]`;
 
   return (
-    <header className="z-50 w-full bg-black md:bg-gray-200">
-      {/* Top bar (now visible on all screens, scrollable on mobile) */}
-      <div className="flex flex-row-reverse justify-between w-full px-4 py-1 text-xs md:text-sm">
-        <div className="flex flex-row items-center gap-x-2 md:gap-x-1 overflow-x-auto">
-          <Link href="/calculation" className="whitespace-nowrap text-white px-3 py-1 rounded-md transition-colors duration-200 hover:bg-white hover:text-[#f03134] bg-[#f03134]">
-            Loan Calculation
-          </Link>
-          <Link href="/" className="whitespace-nowrap text-white px-3 py-1 rounded-md transition-colors duration-200 hover:bg-white hover:text-[#f03134] bg-[#f03134]">
-            Loan Car
-          </Link>
-          <Link href="/" className="whitespace-nowrap text-white px-3 py-1 rounded-md transition-colors duration-200 hover:bg-white hover:text-[#f03134] bg-[#f03134]">
-            Apply Loan
-          </Link>
-          <Link href="/" className="whitespace-nowrap text-white px-3 py-1 rounded-md transition-colors duration-200 hover:bg-white hover:text-[#f03134] bg-[#f03134]">
-            Career
-          </Link>
-          <Link href="/" className="whitespace-nowrap text-white px-3 py-1 rounded-md transition-colors duration-200 hover:bg-white hover:text-[#f03134] bg-[#f03134]">
-            KH
-          </Link>
-        </div>
+    <header className="sticky top-0 z-50 w-full shadow-md bg-white">
+      {/* Top utility bar */}
+      <div className="flex justify-end bg-red-600 text-white text-xs md:text-sm px-6 py-2 gap-3">
+        <Link href="/calculation" className="hover:underline">Loan Calculator</Link>
+        <Link href="/" className="hover:underline">Loan Car</Link>
+        <Link href="/" className="hover:underline">Apply Loan</Link>
+        <Link href="/" className="hover:underline">Career</Link>
+        <Link href="/" className="hover:underline">KH</Link>
       </div>
 
-      {/* Navigation (sticky on desktop) */}
-      <nav className="main-nav bg-white md:w-full shadow-sm md:sticky md:top-0 md:z-50">
-        {/* Mobile bar */}
-        <div className="md:hidden flex items-center justify-between px-4 py-2">
-          <Link href="/" className="flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
-            <Image
-              src={mainLogo}
-              alt="APMF logo"
-              width={140}
-              height={84}
-              priority
-              placeholder="blur"
-              sizes="100px"
-            />
-          </Link>
-          <button
-            aria-label="Toggle menu"
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-menu"
-            onClick={() => setIsMenuOpen((v) => !v)}
-            className="inline-flex items-center justify-center rounded-md p-2 text-[#f03134] hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-[#f03134]"
-          >
-            <FontAwesomeIcon icon={faBars} className="h-5 w-5" />
-          </button>
-
-          <style jsx global>{`
-            @media (max-width: 768px) {
-              /* Hide scrollbars on small screens (while keeping scroll functional) */
-              ::-webkit-scrollbar { display: none; }
-              html { -ms-overflow-style: none; scrollbar-width: none; }
-            }
-          `}</style>
-        </div>
+      {/* Main navigation */}
+      <nav className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/" className="flex items-center">
+          <Image
+            src={mainLogo}
+            alt="APMF logo"
+            width={180}
+            height={90}
+            priority
+          />
+        </Link>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex md:flex-row md:items-center md:justify-between md:px-14 py-2">
-          <div className="flex items-center gap-5">
-            <Link href="/">
-              <Image
-                src={mainLogo}
-                alt="APMF logo"
-                width={250}
-                height={150}
-                priority
-                placeholder="blur"
-                sizes="(min-width: 768px) 100px, 50px"
-              />
-            </Link>
-          </div>
+        <ul className="hidden md:flex items-center gap-8">
+          {navLink.map((link, index) => (
+            <li key={index} className="relative">
+              {link.children ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className={`${baseLinkClass(link.href)} flex items-center gap-1`}>
+                      {link.label}
+                      <FontAwesomeIcon icon={faChevronDown} className="h-3 w-3" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="bg-white shadow-md rounded-md">
+                    {link.children.map((child, cIdx) => (
+                      <DropdownMenuItem key={cIdx} asChild>
+                        <Link
+                          href={child.href}
+                          className="px-4 py-2 text-sm text-red-600 hover:bg-blue-50 hover:text-red-900 rounded-md block"
+                        >
+                          {child.label}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Link href={link.href} className={baseLinkClass(link.href)}>
+                  {link.label}
+                </Link>
+              )}
+            </li>
+          ))}
+        </ul>
 
-          <ul className="flex items-center gap-5 text-[12px] md:text-[14px]">
-            {navLink.map((link, index) => (
-              <li key={index}>
+        {/* Mobile menu button */}
+        <button
+          aria-label="Toggle menu"
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-menu"
+          onClick={() => setIsMenuOpen((v) => !v)}
+          className="md:hidden p-2 rounded-md text-red-600 hover:bg-red-50"
+        >
+          <FontAwesomeIcon icon={faBars} className="h-5 w-5" />
+        </button>
+      </nav>
+
+      {/* Mobile nav menu */}
+      {isMenuOpen && (
+        <div id="mobile-menu" className="md:hidden bg-white border-t border-gray-200 px-4 py-4 space-y-2">
+          <ul className="flex flex-col gap-3">
+            {navLink.map((link, idx) => (
+              <li key={idx}>
                 {link.children ? (
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Link href={link.href} className={baseLinkClass(link.href)} onClick={(e) => e.preventDefault()}>
-                        {link.label}
-                        <FontAwesomeIcon icon={faChevronDown} className="w-4 h-4 ml-2" />
-                      </Link>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="start">
+                  <details className="group">
+                    <summary className="flex justify-between items-center cursor-pointer text-red-600 hover:text-red-600">
+                      {link.label}
+                      <FontAwesomeIcon icon={faChevronDown} className="h-4 w-4 text-red-600 group-open:rotate-180 transition-transform" />
+                    </summary>
+                    <ul className="mt-2 pl-4 flex flex-col gap-2">
                       {link.children.map((child, cIdx) => (
-                        <DropdownMenuItem key={cIdx} asChild>
-                          <Link href={child.href} className="text-[#f03134] hover:text-white bg-white hover:bg-[#f03134]">
+                        <li key={cIdx}>
+                          <Link
+                            href={child.href}
+                            className="block text-sm text-red-600 hover:text-red-900"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
                             {child.label}
                           </Link>
-                        </DropdownMenuItem>
+                        </li>
                       ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                    </ul>
+                  </details>
                 ) : (
-                  <Link href={link.href} className={baseLinkClass(link.href)} onClick={() => setIsMenuOpen(false)}>
+                  <Link
+                    href={link.href}
+                    className={`block text-sm ${pathname === link.href ? 'text-red-700 font-semibold' : 'text-red-600 hover:text-red-600'}`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
                     {link.label}
                   </Link>
                 )}
@@ -164,55 +160,7 @@ export default function Header() {
             ))}
           </ul>
         </div>
-
-        {/* Mobile dropdown menu */}
-        {isMenuOpen && (
-          <div id="mobile-menu" className="md:hidden border-t border-gray-100 px-2 pb-4">
-            <ul className="flex flex-col">
-              {navLink.map((link, idx) => (
-                <li key={idx} className="border-b last:border-b-0 border-gray-100">
-                  {link.children ? (
-                    <details className="group">
-                      <summary className="flex w-full items-center justify-between px-3 py-3 cursor-pointer list-none">
-                        <span className={`text-sm font-medium ${pathname === link.href ? 'text-zinc-500' : 'text-[#f03134]'}`}>
-                          {link.label}
-                        </span>
-                        <FontAwesomeIcon
-                          icon={faChevronDown}
-                          className="h-4 w-4 text-[#f03134] transition-transform group-open:rotate-180"
-                        />
-                      </summary>
-                      <div className="pb-3 pl-5">
-                        <ul className="flex flex-col gap-1">
-                          {link.children.map((child, cIdx) => (
-                            <li key={cIdx}>
-                              <Link
-                                href={child.href}
-                                className="block rounded px-3 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-[#f03134]"
-                                onClick={() => setIsMenuOpen(false)}
-                              >
-                                {child.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </details>
-                  ) : (
-                    <Link
-                      href={link.href}
-                      className={`block px-3 py-3 text-sm font-medium ${pathname === link.href ? 'text-zinc-500' : 'text-[#f03134]'}`}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {link.label}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </nav>
+      )}
     </header>
   );
 }

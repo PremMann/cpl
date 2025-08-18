@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/header";
-import Header01 from "@/components/header01";
+// import Header01 from "@/components/header01";
 import Footer from "@/components/footer";
 import Container from "@/components/container";
 import { NextUIProvider } from "@nextui-org/system";

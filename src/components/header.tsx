@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { faBars, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import mainLogo from './../../public/main_logo.png';
 import {
   DropdownMenu,
@@ -24,7 +23,7 @@ export default function Header() {
       href: '/about',
       children: [
         { label: 'Our History', href: '/aboutus' },
-        { label: 'Vision & Mission', href: '/aboutus/vision-and-mission' },
+        { label: 'Vision & Mission', href: '/aboutus/mission-vision' },
         { label: 'Board of Directors', href: '/aboutus/board-of-directors' },
         { label: 'Management Team', href: '/aboutus/management-team' },
         { label: 'Organizational Chart', href: '/aboutus/organizational-chart' },
@@ -55,7 +54,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full shadow-md bg-white">
       {/* Top utility bar */}
       <div className="flex justify-end bg-red-600 text-white text-xs md:text-sm px-6 py-2 gap-3">
-        <Link href="/calculation" className="hover:underline">Loan Calculator</Link>
+        <Link href="/calculation" className="hover:underline">Loan Calculator s</Link>
         <Link href="/" className="hover:underline">Loan Car</Link>
         <Link href="/" className="hover:underline">Apply Loan</Link>
         <Link href="/" className="hover:underline">Career</Link>

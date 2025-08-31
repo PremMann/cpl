@@ -1,7 +1,13 @@
 import type { NextConfig } from "next";
+const nextI18NextConfig = require('./next-i18next.config');
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  i18n: nextI18NextConfig.i18n,
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: 'bytegrad.com' }
+    ]
+  },
 };
 
 export default nextConfig;

@@ -1,42 +1,15 @@
 "use client";
-
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 
 type Report = {
   year: number;
   title: string;
-  file: string; // PDFs under /public/reports/...
+  file: string; 
   size?: string;
   summary?: string;
 };
-
-const reports: Report[] = [
-  {
-    year: 2025,
-    title: "Annual Report 2025",
-    file: "/reports/apmf-annual-report-2025.pdf",
-    size: "7.5 MB",
-    summary:
-      "A remarkable year of growth, innovation, and operational excellence across all departments.",
-  },
-  {
-    year: 2024,
-    title: "Annual Report 2024",
-    file: "/reports/apmf-annual-report-2024.pdf",
-    size: "7.2 MB",
-    summary:
-      "Highlights of responsible growth, product innovation, and strengthened client protection standards.",
-  },
-  {
-    year: 2023,
-    title: "Annual Report 2023",
-    file: "/reports/apmf-annual-report-2023.pdf",
-    size: "6.8 MB",
-    summary:
-      "Solid performance with portfolio quality improvements and digital service expansion.",
-  },
-];
 
 const page = {
   initial: { opacity: 0, scale: 0.985 },
@@ -59,6 +32,7 @@ const item = {
 };
 
 function ReportCard({ r }: { r: Report }) {
+  const { t } = useTranslation(['annualReports']);
   return (
     <motion.article
       variants={item}
@@ -97,14 +71,14 @@ function ReportCard({ r }: { r: Report }) {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-md bg-[#f03135] px-3 py-2 text-sm font-semibold text-white hover:bg-[#d3262a]"
           >
-            View PDF
+            {t('buttons.viewPdf', { ns: 'annualReports' })}
           </a>
           <a
             href={r.file}
             download
             className="inline-flex items-center justify-center rounded-md border border-gray-200 px-3 py-2 text-sm font-semibold text-gray-900 hover:border-gray-300"
           >
-            Download
+            {t('buttons.download', { ns: 'annualReports' })}
           </a>
           {r.size && <span className="text-xs text-gray-500">PDF • {r.size}</span>}
         </div>
@@ -114,14 +88,41 @@ function ReportCard({ r }: { r: Report }) {
 }
 
 export default function AnnualReportPage() {
+  const { t } = useTranslation(['annualReports']);
+
+  // Derive reports from translation resources to stay in sync with language
+  const reports: Report[] = useMemo(() => {
+    type ReportInput = { year: number; title: string; file: string; size?: string; summary?: string };
+    const isReportInput = (o: unknown): o is ReportInput => {
+      if (typeof o !== 'object' || o === null) return false;
+      const rec = o as Record<string, unknown>;
+      return (
+        typeof rec.year === 'number' &&
+        typeof rec.title === 'string' &&
+        typeof rec.file === 'string' &&
+        (rec.size === undefined || typeof rec.size === 'string') &&
+        (rec.summary === undefined || typeof rec.summary === 'string')
+      );
+    };
+
+    const raw = t('reports', { returnObjects: true, ns: 'annualReports' });
+    if (!Array.isArray(raw)) return [];
+    const cleaned: Report[] = [];
+    for (const r of raw) {
+      if (isReportInput(r)) cleaned.push({ ...r });
+    }
+    cleaned.sort((a, b) => b.year - a.year);
+    return cleaned;
+  }, [t]);
+
   const [yearFilter, setYearFilter] = useState<number | "all">("all");
 
   const years = useMemo(
     () => Array.from(new Set(reports.map((r) => r.year))).sort((a, b) => b - a),
-    []
+    [reports]
   );
 
-  const sortedAll = useMemo(() => [...reports].sort((a, b) => b.year - a.year), []);
+  const sortedAll = useMemo(() => [...reports].sort((a, b) => b.year - a.year), [reports]);
   const filtered = useMemo(
     () => (yearFilter === "all" ? sortedAll : sortedAll.filter((r) => r.year === yearFilter)),
     [sortedAll, yearFilter]
@@ -135,11 +136,8 @@ export default function AnnualReportPage() {
       <section className="border-b border-gray-100 bg-gradient-to-br from-red-50 to-white">
         <div className="mx-auto max-w-7xl px-4 md:px-8 py-12 md:py-16">
           <motion.div variants={fadeUp} initial="initial" animate="animate" className="max-w-3xl">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900">Annual Reports</h1>
-            <p className="mt-3 text-gray-700">
-              Browse and download our latest and previous annual reports. Each report includes governance updates,
-              impact highlights, and performance metrics.
-            </p>
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900">{t('title', { ns: 'annualReports' })}</h1>
+            <p className="mt-3 text-gray-700">{t('heroSubtitle', { ns: 'annualReports' })}</p>
           </motion.div>
         </div>
       </section>
@@ -168,7 +166,9 @@ export default function AnnualReportPage() {
                     yearFilter === "all" ? "bg-red-50 text-red-700 border-red-100" : "bg-gray-100 text-gray-700 border-gray-200"
                   }`}
                 >
-                  {yearFilter === "all" ? "Latest" : `Year ${highlight.year}`}
+                  {yearFilter === "all"
+                    ? t('labels.latest', { ns: 'annualReports' })
+                    : t('labels.year', { ns: 'annualReports', year: highlight.year })}
                 </div>
                 <h2 className="mt-3 text-2xl font-semibold text-gray-900">
                   {highlight.title} ({highlight.year})
@@ -181,14 +181,14 @@ export default function AnnualReportPage() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center rounded-md bg-[#f03135] px-4 py-2 text-sm font-semibold text-white hover:bg-[#d3262a]"
                   >
-                    View PDF
+                    {t('buttons.viewPdf', { ns: 'annualReports' })}
                   </a>
                   <a
                     href={highlight.file}
                     download
                     className="inline-flex items-center justify-center rounded-md border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-900 hover:border-gray-300"
                   >
-                    Download
+                    {t('buttons.download', { ns: 'annualReports' })}
                   </a>
                   {highlight.size && <span className="text-xs text-gray-500">PDF • {highlight.size}</span>}
                 </div>
@@ -215,7 +215,7 @@ export default function AnnualReportPage() {
             }`}
             aria-pressed={yearFilter === "all"}
           >
-            All years
+            {t('filters.allYears', { ns: 'annualReports' })}
           </button>
           {years.map((y) => (
             <button
@@ -239,7 +239,7 @@ export default function AnnualReportPage() {
         <motion.div
           variants={stagger}
           initial="initial"
-          whileInView="animate"
+            whileInView="animate"
           viewport={{ once: true, amount: 0.2 }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8"
         >
@@ -256,7 +256,7 @@ export default function AnnualReportPage() {
             viewport={{ once: true, amount: 0.3 }}
             className="mt-10 rounded-xl border border-dashed border-gray-300 bg-gray-50 p-8 text-center text-gray-600"
           >
-            No reports found for the selected year.
+            {t('empty.noReports', { ns: 'annualReports' })}
           </motion.div>
         )}
       </section>

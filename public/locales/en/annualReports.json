@@ -1,0 +1,41 @@
+{
+  "title": "Annual Reports",
+  "heroSubtitle": "Browse and download our latest and previous annual reports. Each report includes governance updates, impact highlights, and performance metrics.",
+  "filters": {
+    "allYears": "All years"
+  },
+  "buttons": {
+    "viewPdf": "View PDF",
+    "download": "Download"
+  },
+  "labels": {
+    "latest": "Latest",
+    "year": "Year {{year}}"
+  },
+  "empty": {
+    "noReports": "No reports found for the selected year."
+  },
+  "reports": [
+    {
+      "year": 2025,
+      "title": "Annual Report 2025",
+      "file": "/reports/apmf-annual-report-2025.pdf",
+      "size": "7.5 MB",
+      "summary": "A remarkable year of growth, innovation, and operational excellence across all departments."
+    },
+    {
+      "year": 2024,
+      "title": "Annual Report 2024",
+      "file": "/reports/apmf-annual-report-2024.pdf",
+      "size": "7.2 MB",
+      "summary": "Highlights of responsible growth, product innovation, and strengthened client protection standards."
+    },
+    {
+      "year": 2023,
+      "title": "Annual Report 2023",
+      "file": "/reports/apmf-annual-report-2023.pdf",
+      "size": "6.8 MB",
+      "summary": "Solid performance with portfolio quality improvements and digital service expansion."
+    }
+  ]
+}

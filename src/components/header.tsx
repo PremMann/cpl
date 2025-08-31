@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
+import i18n from '@/lib/i18n'; 
 import { usePathname } from 'next/navigation';
 import { faBars, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,22 +18,23 @@ import {
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { t } = useTranslation('common');
 
   const navLink = [
     {
-      label: 'ABOUT US',
+      label: t('about_us'),
       href: '/about',
       children: [
-        { label: 'Our History', href: '/aboutus' },
-        { label: 'Vision & Mission', href: '/aboutus/mission-vision' },
-        { label: 'Board of Directors', href: '/aboutus/board-of-directors' },
-        { label: 'Management Team', href: '/aboutus/management-team' },
-        { label: 'Organizational Chart', href: '/aboutus/organizational-chart' },
-        { label: 'Annual Report', href: '/aboutus/annual-report' }
+        { label: t('our_history'), href: '/aboutus' },
+        { label: t('vision_mission'), href: '/aboutus/mission-vision' },
+        { label: t('board_directors'), href: '/aboutus/board-of-directors' },
+        { label: t('management_team'), href: '/aboutus/management-team' },
+        { label: t('org_chart'), href: '/aboutus/organizational-chart' },
+        { label: t('annual_report'), href: '/aboutus/annual-report' }
       ]
     },
     {
-      label: 'PRODUCTS',
+      label: t('products').toUpperCase(),
       href: '/products',
       children: [
         { label: 'Quick Loan', href: '/products/quick-loan' },
@@ -42,9 +45,9 @@ export default function Header() {
         { label: 'Secured Installment Loan', href: '/products/secured-installment-loan' }
       ]
     },
-    { label: 'PROMOTION', href: '/promotions' },
-    { label: 'CONTACT US', href: '/contacts' },
-    { label: 'Admin', href: '/admin' }
+    { label: t('promotion').toUpperCase(), href: '/promotions' },
+    { label: t('contact_us').toUpperCase(), href: '/contacts' },
+    { label: t('admin'), href: '/admin' }
   ];
 
   const baseLinkClass = (href: string) =>
@@ -54,11 +57,12 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full shadow-md bg-white">
       {/* Top utility bar */}
       <div className="flex justify-end bg-red-600 text-white text-xs md:text-sm px-6 py-2 gap-3">
-        <Link href="/calculation" className="hover:underline">Loan Calculator s</Link>
-        <Link href="/" className="hover:underline">Loan Car</Link>
-        <Link href="/" className="hover:underline">Apply Loan</Link>
-        <Link href="/" className="hover:underline">Career</Link>
-        <Link href="/" className="hover:underline">KH</Link>
+  <Link href="/calculation" className="hover:underline">{t('loan_calculator')}</Link>
+  <Link href="/" className="hover:underline">{t('loan_car')}</Link>
+  <Link href="/" className="hover:underline">{t('apply_loan')}</Link>
+  <Link href="/" className="hover:underline">{t('career')}</Link>
+  <button onClick={() => i18n.changeLanguage('en')} className="hover:underline">EN</button>
+  <button onClick={() => i18n.changeLanguage('kh')} className="hover:underline">KH</button>
       </div>
 
       {/* Main navigation */}

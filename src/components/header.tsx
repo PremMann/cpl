@@ -38,9 +38,9 @@ export default function Header() {
         { label: 'Quick Loan', href: '/products/quick-loan' },
         { label: 'Electronics Installment Loan', href: '/products/electronics-installment-loan' },
         { label: 'Motorbike Installment Loan', href: '/products/motorbike-installment-loan' },
-        { label: 'Car Installment Loan', href: '/products/car-installment-loan' },
-        { label: 'Land Installment Loan', href: '/products/land-installment-loan' },
-        { label: 'Secured Installment Loan', href: '/products/secured-installment-loan' }
+        // { label: 'Car Installment Loan', href: '/products/car-installment-loan' },
+        // { label: 'Land Installment Loan', href: '/products/land-installment-loan' },
+        // { label: 'Secured Installment Loan', href: '/products/secured-installment-loan' }
       ]
     },
     { label: 'PROMOTION', href: '/promotions' },
@@ -55,7 +55,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full shadow-md bg-white">
       {/* Top utility bar */}
       <div className="flex justify-end bg-red-600 text-white text-xs md:text-sm px-6 py-2 gap-3">
-        <Link href="/calculation" className="hover:underline">Loan Calculator</Link>
+        <Link href="/calculation" className="hover:underline">Loan Calculator test</Link>
         <Link href="/" className="hover:underline">Loan Car</Link>
         <Link href="/" className="hover:underline">Apply Loan</Link>
         <Link href="/" className="hover:underline">Career</Link>

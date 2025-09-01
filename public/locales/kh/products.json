@@ -1,0 +1,88 @@
+{
+  "heroTitle": "ផលិតផលរបស់យើង",
+  "heroDescription": "តម្លៃច្បាស់លាស់ អនុម័តលឿន និងលក្ខខណ្ឌបត់បែនឱ្យសមនឹងតម្រូវការរបស់អ្នក។",
+  "viewDetails": "មើលសេចក្ដីលម្អិត →",
+  "ariaView": "មើល {{name}}",
+  "labels": {
+    "breadcrumbs": { "home": "ទំព័រដើម", "products": "ផលិតផល" },
+    "keyInformation": "ព័ត៌មានសំខាន់",
+    "interestRate": "អត្រាការប្រាក់",
+    "loanTerm": "រយៈពេលឥណទាន",
+    "minAmount": "ចំនួនអប្បបរមា",
+    "maxAmount": "ចំនួនអតិបរមា",
+    "about": "អំពីផលិតផលនេះ",
+    "highlights": "លក្ខណៈពិសេស",
+    "applyNow": "ដាក់ពាក្យឥឡូវនេះ",
+    "downloadBrochure": "ទាញយកប្រូស្យួរ"
+  },
+  "details": {
+    "quick-loan": {
+      "details": "រចនាសម្រាប់តម្រូវការបន្ទាន់ដោយដំណើរការដាក់ពាក្យសាមញ្ញ លក្ខខណ្ឌច្បាស់លាស់ និងចេញប្រាក់រហ័ស។ អំណោយផលសម្រាប់ហិរញ្ញប្បទានខ្លី។",
+      "features": ["អនុម័តក្នុងថ្ងៃ", "ការបង់កម្រៃច្បាស់លាស់", "បង់សងបត់បែន"],
+      "stats": { "interestRate": "ចាប់ពី 1.2% / ខែ", "minAmount": "$100", "maxAmount": "$5,000", "term": "1–24 ខែ" },
+      "applyHref": "/standings/call-center"
+    },
+    "electronics-installment-loan": {
+      "details": "ហិរញ្ញប្បទានឧបករណ៍អេឡិចត្រូនិកជាមួយការបង់ប្រចាំខែថេរ។ ការជួយផ្សារភ្ជាប់ជាមួយហាងឈានមុខ។",
+      "features": ["បង់រំលោះថេរ", "ដំណើរការរហ័ស", "តម្លៃច្បាស់"],
+      "stats": { "interestRate": "ចាប់ពី 1.0% / ខែ", "minAmount": "$100", "maxAmount": "$3,000", "term": "3–24 ខែ" },
+      "applyHref": "/standings/call-center"
+    },
+    "motorbike-installment-loan": {
+      "details": "ហិរញ្ញប្បទានសម្រាប់ម៉ូតូថ្មី ឬចាស់ជាមួយដំណើរការរហ័ស និងរយៈពេលបត់បែនសមនឹងថវិកា។",
+      "features": ["បង់ដំបូងទាប", "រយៈពេលបត់បែន", "ឯកសារងាយ"],
+      "stats": { "interestRate": "ចាប់ពី 1.1% / ខែ", "minAmount": "$300", "maxAmount": "$6,000", "term": "6–36 ខែ" },
+      "applyHref": "/standings/call-center"
+    },
+    "car-installment-loan": {
+      "details": "ឥណទានរថយន្តជាមួយការបង់ថេរ និងចេញលុយរហ័ស ដើម្បីឱ្យអ្នកបើកបានលឿនជាងមុន។",
+      "features": ["អត្រាប្រកួតប្រជែង", "អនុម័តលឿន", "ការបង់ដំបូងបត់បែន"],
+      "stats": { "interestRate": "ចាប់ពី 1.0% / ខែ", "minAmount": "$2,000", "maxAmount": "$30,000", "term": "12–60 ខែ" },
+      "applyHref": "/standings/call-center"
+    },
+    "land-installment-loan": {
+      "details": "ហិរញ្ញប្បទានការទិញដីជាមួយផែនការបង់ដែលសមនឹងលំហូរប្រាក់។ ដំណើរការសាមញ្ញ និងតម្លៃច្បាស់។",
+      "features": ["ផែនការបត់បែន", "ឯកសារច្បាស់លាស់", "ការគាំទ្រពិសេស"],
+      "stats": { "interestRate": "ចាប់ពី 1.2% / ខែ", "minAmount": "$5,000", "maxAmount": "$80,000", "term": "12–84 ខែ" },
+      "applyHref": "/standings/call-center"
+    },
+    "secured-installment-loan": {
+      "details": "ប្រើប្រាស់បញ្ចាំដើម្បីទទួលបានអត្រាល្អ និងដែនកំណត់ខ្ពស់សម្រាប់តម្រូវការធំ។",
+      "features": ["ដែនកំណត់ខ្ពស់", "អត្រាល្អ", "ការបង់ថេរ"],
+      "stats": { "interestRate": "ចាប់ពី 0.9% / ខែ", "minAmount": "$500", "maxAmount": "$50,000", "term": "6–60 ខែ" },
+      "applyHref": "/standings/call-center"
+    }
+  },
+  "list": [
+    {
+      "slug": "quick-loan",
+      "name": "ឥណទានរហ័ស",
+      "description": "អនុម័តលឿនសម្រាប់ចំណាយបន្ទាន់ផ្ទាល់ខ្លួនជាមួយលក្ខខណ្ឌបត់បែន។"
+    },
+    {
+      "slug": "electronics-installment-loan",
+      "name": "ឥណទានបង់រំលោះឧបករណ៍អេឡិចត្រូនិក",
+      "description": "ទិញឧបករណ៍អេឡិចត្រូនិកឥឡូវនេះ ហើយបង់រំលោះប្រចាំខែជាមួយតម្លៃច្បាស់លាស់។"
+    },
+    {
+      "slug": "motorbike-installment-loan",
+      "name": "ឥណទានបង់រំលោះម៉ូតូ",
+      "description": "ក្លាយជាម្ចាស់ម៉ូតូដោយចំណាយដំបូងទាប និងបង់ប្រចាំខែមិនប្រែប្រួល។"
+    },
+    {
+      "slug": "car-installment-loan",
+      "name": "ឥណទានបង់រំលោះរថយន្ត",
+      "description": "ហិរញ្ញប្បទានរថយន្តរបស់អ្នកជាមួយអត្រាដ៏ប្រកួតប្រជែង និងលក្ខខណ្ឌច្បាស់លាស់។"
+    },
+    {
+      "slug": "land-installment-loan",
+      "name": "ឥណទានបង់រំលោះដី",
+      "description": "ការបង់រំលោះមានរចនាសម្ព័ន្ធសម្រាប់ការទិញដីដោយមានទំនុកចិត្ត។"
+    },
+    {
+      "slug": "secured-installment-loan",
+      "name": "ឥណទានបង់រំលោះមានបញ្ចាំ",
+      "description": "ប្រើប្រាស់បញ្ចាំដើម្បីទទួលបានអត្រាល្អ និងកំណត់ខ្ពស់។"
+    }
+  ]
+}

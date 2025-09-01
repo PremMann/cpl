@@ -1,61 +1,16 @@
 "use client";
 
+
 import { motion } from "framer-motion";
 import Image from "next/image";
 import ceoImage from "../../../../public/ceo.png";
+import { managementTeamContent } from "../../../data/managementTeamContent";
 
-const teamMembers = [
-  {
-    name: "John Smith",
-    role: "Chief Executive Officer",
-    email: "john.smith@example.com",
-    phone: "+855 123456789",
-    image: ceoImage.src,
-    experience:
-      "Over 20 years of leadership in the financial services industry, driving growth and innovation across multiple markets.",
-    education:
-      "MBA in Business Administration, Harvard Business School.",
-    background:
-      "John has led major organizational transformations and is passionate about building sustainable financial solutions.",
-  },
-  {
-    name: "Sarah Lee",
-    role: "Chief Financial Officer",
-    email: "sarah.lee@example.com",
-    phone: "+855 987654321",
-    image: ceoImage.src,
-    experience:
-      "15 years in corporate finance, specializing in risk management, investment strategies, and operational efficiency.",
-    education:
-      "Chartered Financial Analyst (CFA), MSc in Finance from London School of Economics.",
-    background:
-      "Sarah has managed billion-dollar portfolios and focuses on financial transparency and accountability.",
-  },
-  {
-    name: "Michael Chen",
-    role: "Head of Operations",
-    email: "michael.chen@example.com",
-    phone: "+855 555444333",
-    image: ceoImage.src,
-    experience:
-      "10 years of operational leadership in microfinance and digital banking solutions.",
-    education: "Bachelor’s Degree in Information Systems, MIT.",
-    background:
-      "Michael specializes in streamlining processes and implementing technology-driven solutions.",
-  },
-  {
-    name: "Anna Brown",
-    role: "Head of Marketing",
-    email: "anna.brown@example.com",
-    phone: "+855 111222333",
-    image: ceoImage.src,
-    experience:
-      "12 years of experience in brand strategy, communications, and digital marketing.",
-    education: "BA in Marketing, University of Melbourne.",
-    background:
-      "Anna has successfully built campaigns for leading financial brands and focuses on customer engagement.",
-  },
-];
+// Attach image to each member (if not in static file)
+const teamMembers = managementTeamContent.teamMembers.map((member) => ({
+  ...member,
+  image: ceoImage.src,
+}));
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -78,11 +33,10 @@ export default function ManagementTeamPage() {
           className="text-center max-w-3xl mx-auto px-6"
         >
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Meet Our Management Team
+            {managementTeamContent.heroTitle}
           </h1>
           <p className="text-lg text-gray-600">
-            Get to know the leaders driving our vision and guiding our company
-            with dedication, expertise, and innovation.
+            {managementTeamContent.heroDescription}
           </p>
         </motion.div>
       </section>
@@ -126,9 +80,9 @@ export default function ManagementTeamPage() {
               <p className="text-gray-500">{member.email} | {member.phone}</p>
 
               <div className="mt-4 space-y-3 text-gray-700">
-                <p><span className="font-semibold">Experience:</span> {member.experience}</p>
-                <p><span className="font-semibold">Education:</span> {member.education}</p>
-                <p><span className="font-semibold">Background:</span> {member.background}</p>
+                <p><span className="font-semibold">{managementTeamContent.experienceLabel}</span> {member.experience}</p>
+                <p><span className="font-semibold">{managementTeamContent.educationLabel}</span> {member.education}</p>
+                <p><span className="font-semibold">{managementTeamContent.backgroundLabel}</span> {member.background}</p>
               </div>
             </div>
           </motion.div>

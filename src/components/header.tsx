@@ -40,9 +40,9 @@ export default function Header() {
         { label: 'Quick Loan', href: '/products/quick-loan' },
         { label: 'Electronics Installment Loan', href: '/products/electronics-installment-loan' },
         { label: 'Motorbike Installment Loan', href: '/products/motorbike-installment-loan' },
-        { label: 'Car Installment Loan', href: '/products/car-installment-loan' },
-        { label: 'Land Installment Loan', href: '/products/land-installment-loan' },
-        { label: 'Secured Installment Loan', href: '/products/secured-installment-loan' }
+        // { label: 'Car Installment Loan', href: '/products/car-installment-loan' },
+        // { label: 'Land Installment Loan', href: '/products/land-installment-loan' },
+        // { label: 'Secured Installment Loan', href: '/products/secured-installment-loan' }
       ]
     },
     { label: t('promotion').toUpperCase(), href: '/promotions' },

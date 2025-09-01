@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import product01 from "../../public/product01.jpg";
+import '../lib/i18n';
+import { useTranslation } from 'react-i18next';
 
 export type Promotion = {
   id: string;
@@ -17,120 +19,63 @@ export type Promotion = {
   terms?: string;
 };
 
-type PromotionsProps = {
+// Fallback (used only if translation not loaded yet)
+const fallbackPromotions: Promotion[] = [];
+
+interface PromotionsProps {
   title?: string;
   promotions?: Promotion[];
   showFilters?: boolean;
-};
+}
 
-const fallbackPromotions: Promotion[] = [
-  {
-    id: "p1",
-    title: "Quick Loan – Fast Track Approval",
-    summary: "Get funds fast for urgent needs with transparent pricing and flexible terms.",
-    image: product01.src,
-    href: "/products/quick-loan",
-    badge: "Featured",
-    category: "Loans",
-    validUntil: "Dec 31, 2025",
-    terms: "*T&Cs apply",
-  },
-  {
-    id: "p2",
-    title: "Electronics Installment – 0% Markup Promo",
-    summary: "Own the latest devices now and pay monthly with clear, predictable payments.",
-    image: product01.src,
-    href: "/products/electronics-installment-loan",
-    category: "Installments",
-    validUntil: "Nov 30, 2025",
-  },
-  {
-    id: "p3",
-    title: "Motorbike Installment – Low Down Payment",
-    summary: "Ride sooner with a low upfront cost and fixed monthly installments.",
-    image: product01.src,
-    href: "/products/motorbike-installment-loan",
-    category: "Installments",
-  },
-  {
-    id: "p4",
-    title: "SME Working Capital – Grow Your Business",
-    summary: "Flexible working capital financing tailored for SMEs and micro businesses.",
-    image: product01.src,
-    href: "/fixtures/sme-working-capital",
-    category: "SME",
-  },
-  {
-    id: "p5",
-    title: "Car Installment – Drive with Confidence",
-    summary: "Competitive rates and clear terms for new or pre-owned cars.",
-    image: product01.src,
-    href: "/products/car-installment-loan",
-    category: "Installments",
-  },
-  {
-    id: "p6",
-    title: "Education Loan – Invest in Your Future",
-    summary: "Support tuition and study expenses with predictable monthly payments.",
-    image: product01.src,
-    href: "/fixtures/education-loan",
-    category: "Loans",
-  },
-  {
-    id: "p7",
-    title: "Land Installment – Plan with Confidence",
-    summary: "Structured installment options for land purchases with transparent pricing.",
-    image: product01.src,
-    href: "/products/land-installment-loan",
-    category: "Installments",
-  },
-  {
-    id: "p8",
-    title: "Secured Installment – Better Rates",
-    summary: "Leverage your collateral for higher limits and better pricing.",
-    image: product01.src,
-    href: "/products/secured-installment-loan",
-    category: "Loans",
-  },
-];
+interface PromotionItem { id: string; title: string; summary?: string; category?: string; image?: string; badge?: string; href: string; validUntil?: string; terms?: string }
+interface PromotionLabels { all?: string; learnMore?: string; validUntil?: string; until?: string; featured?: string; viewDetails?: string }
 
-export default function Promotions({
-  title = "Promotions",
-  promotions = fallbackPromotions,
-  showFilters = true,
-}: PromotionsProps) {
-  const [active, setActive] = useState<string>("All");
+export default function Promotions({ title, promotions = fallbackPromotions, showFilters = true }: PromotionsProps) {
+  const { t } = useTranslation('promotions');
+  const labels = t('labels', { returnObjects: true }) as PromotionLabels;
+  const translatedList = t('list', { returnObjects: true }) as PromotionItem[];
+  const resolvedPromotions: Promotion[] = (translatedList || []).map((item) => ({
+    id: item.id,
+    title: item.title,
+    summary: item.summary || '',
+    image: product01.src, // placeholder
+    href: item.href || '#',
+    badge: item.badge,
+    category: item.category,
+    validUntil: item.validUntil,
+    terms: item.terms
+  }));
+  const finalPromotions = resolvedPromotions.length ? resolvedPromotions : promotions;
+  const heading = title || (t('title') as string);
+  const description = t('description') as string;
+  const allLabel = labels.all || 'All';
+  const [active, setActive] = useState<string>(allLabel);
 
   const categories = useMemo(() => {
     const set = new Set<string>();
-    promotions.forEach((p) => p.category && set.add(p.category));
-    return ["All", ...Array.from(set)];
-  }, [promotions]);
+    finalPromotions.forEach(p => p.category && set.add(p.category));
+    return [allLabel, ...Array.from(set)];
+  }, [finalPromotions, allLabel]);
 
-  const featured =
-    promotions.find((p) => p.badge?.toLowerCase() === "featured") ?? promotions[0];
+  const featured = finalPromotions.find(p => (p.badge || '').toLowerCase() === (labels.featured || 'featured').toLowerCase()) ?? finalPromotions[0];
 
   const visible = useMemo(() => {
-    const base = active === "All" ? promotions : promotions.filter((p) => p.category === active);
-    // Keep featured first (if included), then others
+    const base = active === allLabel ? finalPromotions : finalPromotions.filter(p => p.category === active);
     if (!featured) return base;
-    return [featured, ...base.filter((p) => p.id !== featured.id)];
-  }, [promotions, active, featured]);
+    return [featured, ...base.filter(p => p.id !== featured.id)];
+  }, [finalPromotions, active, featured, allLabel]);
 
   return (
     <section aria-labelledby="promotions-heading" className="w-full">
       {/* Section header */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 mb-6">
-        <h2 id="promotions-heading" className="text-2xl md:text-3xl font-bold text-gray-900">
-          {title}
-        </h2>
-        <p className="text-gray-600 mt-1">
-          Latest offers and campaigns tailored to your financial goals.
-        </p>
+  <h2 id="promotions-heading" className="text-2xl md:text-3xl font-bold text-gray-900">{heading}</h2>
+  <p className="text-gray-600 mt-1">{description}</p>
       </div>
 
       {/* Spotlight card (distinct look) */}
-      {featured && (
+  {featured && (
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="relative overflow-hidden rounded-3xl shadow-xl ring-1 ring-black/5 bg-gradient-to-br from-[#f03135] to-[#d3262a] text-white">
             <div className="grid md:grid-cols-2">
@@ -152,11 +97,11 @@ export default function Promotions({
                     className="inline-flex items-center justify-center bg-white text-[#f03135] hover:bg-white/90 font-semibold px-5 py-2.5 rounded-md transition-colors shadow"
                     aria-label={`View details: ${featured.title}`}
                   >
-                    Learn more
+                    {labels.learnMore}
                   </Link>
                   {featured.validUntil && (
                     <span className="text-white/90 text-sm">
-                      Valid until: {featured.validUntil}
+                      {labels.validUntil} {featured.validUntil}
                     </span>
                   )}
                   {featured.terms && (
@@ -187,7 +132,7 @@ export default function Promotions({
       )}
 
       {/* Segmented filters (different from products page buttons) */}
-      {showFilters && categories.length > 1 && (
+  {showFilters && categories.length > 1 && (
         <div className="max-w-7xl mx-auto px-4 md:px-8 mt-8">
           <div className="inline-flex rounded-full bg-neutral-100 p-1 border border-neutral-200 shadow-inner">
             {categories.map((cat) => {
@@ -260,14 +205,12 @@ export default function Promotions({
                     <Link
                       href={p.href}
                       className="text-[#f03135] hover:text-[#d3262a] text-sm font-semibold underline underline-offset-4"
-                      aria-label={`View details: ${p.title}`}
+                      aria-label={t('labels.viewDetails', { title: p.title }) as string}
                     >
-                      Learn more →
+                      {labels.learnMore} →
                     </Link>
                     {p.validUntil && (
-                      <span className="text-xs text-gray-500">
-                        Until {p.validUntil}
-                      </span>
+                      <span className="text-xs text-gray-500">{labels.until} {p.validUntil}</span>
                     )}
                   </div>
 

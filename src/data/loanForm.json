@@ -1,0 +1,52 @@
+{
+  "title": "Microfinance Loan Application Form",
+  "sections": [
+    {
+      "title": "1. Applicant Information",
+      "fields": [
+        { "label": "Full Name", "name": "fullName", "type": "text", "required": true },
+        { "label": "Date of Birth", "name": "dob", "type": "date", "required": true },
+        { "label": "Gender", "name": "gender", "type": "select", "options": ["Male", "Female", "Other"], "required": true },
+        { "label": "National ID / Passport", "name": "nationalId", "type": "text", "required": true },
+        { "label": "Phone Number", "name": "phone", "type": "tel", "required": true },
+        { "label": "Email", "name": "email", "type": "email", "required": true },
+        { "label": "Current Address", "name": "address", "type": "text", "required": true }
+      ]
+    },
+    {
+      "title": "2. Employment Details",
+      "fields": [
+        { "label": "Employer / Business Name", "name": "employer", "type": "text", "required": true },
+        { "label": "Occupation / Position", "name": "occupation", "type": "text", "required": true },
+        { "label": "Monthly Income (USD)", "name": "monthlyIncome", "type": "number", "required": true, "min": 0 },
+        { "label": "Employment Type", "name": "employmentType", "type": "select", "options": ["Salaried", "Self-Employed", "Other"], "required": true },
+        { "label": "Length of Employment / Business (years)", "name": "employmentLength", "type": "number", "required": true, "min": 0 }
+      ]
+    },
+    {
+      "title": "3. Loan Request",
+      "fields": [
+        { "label": "Loan Amount Requested (USD)", "name": "loanAmount", "type": "number", "required": true, "min": 0 },
+        { "label": "Loan Purpose", "name": "loanPurpose", "type": "text", "required": true },
+        { "label": "Loan Term (months)", "name": "loanTerm", "type": "number", "required": true, "min": 1 },
+        { "label": "Source of Repayment", "name": "repaymentSource", "type": "text", "required": true }
+      ]
+    },
+    {
+      "title": "4. Guarantor Information",
+      "fields": [
+        { "label": "Guarantor Name", "name": "guarantorName", "type": "text", "required": true },
+        { "label": "Guarantor Phone", "name": "guarantorPhone", "type": "tel", "required": true },
+        { "label": "Relationship to Applicant", "name": "guarantorRelationship", "type": "text", "required": true },
+        { "label": "Guarantor Address", "name": "guarantorAddress", "type": "text", "required": true }
+      ]
+    },
+    {
+      "title": "5. Declaration",
+      "declaration": "I hereby declare that the information provided above is true and correct to the best of my knowledge. I authorize the microfinance institution to verify any information provided in this application.",
+      "fields": [
+        { "label": "I agree to the terms and conditions.", "name": "agree", "type": "checkbox", "required": true }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import '../../lib/i18n';
+import { useTranslation } from 'react-i18next';
 
 type FormValues = {
   name: string;
@@ -11,60 +13,31 @@ type FormValues = {
 
 type FormErrors = Partial<Record<keyof FormValues, string>>;
 
-// You can update this with your company details
-const institution = {
-  name: "Active People’s Microfinance Plc.",
-  tagline: "Enabling growth through responsible finance",
-};
-
-const headOffice = {
-  name: "Head Office",
-  address: "Active People’s Microfinance Institution (Head Office), Phnom Penh, Cambodia",
-  phone: "+855 (0)15 533 900",
-  email: "info@apmfi.com.kh",
-  mapUrl:
-    "https://www.google.com/maps?q=Active+People%27s+Microfinance+Institution+(Head+Office),+Phnom+Penh,+Cambodia&output=embed",
-};
-
-const branches: Array<{
-  name: string;
-  address: string;
-  phone: string;
-  email: string;
-}> = [
-  {
-    name: "Branch 1",
-    address: "Phnom Penh, Cambodia",
-    phone: "+855 (0) 12 574 233",
-    email: "branch1@apmfi.com.kh",
-  },
-  {
-    name: "Branch 2",
-    address: "Phnom Penh, Cambodia",
-    phone: "+855 (0) 98 213 680",
-    email: "branch2@apmfi.com.kh",
-  },
-  {
-    name: "Branch 3",
-    address: "Phnom Penh, Cambodia",
-    phone: "+855 (0) 11 324 473",
-    email: "branch3@apmfi.com.kh",
-  },
-  {
-    name: "Branch 4",
-    address: "Phnom Penh, Cambodia",
-    phone: "+855 (0) 71 3128 777",
-    email: "branch4@apmfi.com.kh",
-  },
-  {
-    name: "Branch 5",
-    address: "Phnom Penh, Cambodia",
-    phone: "+855 (0)15 533 900",
-    email: "branch5@apmfi.com.kh",
-  },
-];
+type Branch = { name: string; address: string; phone: string; email: string };
+interface Institution { name: string; tagline: string }
+interface HeadOffice { name: string; address: string; mapUrl: string }
+interface BusinessHours { title: string; weekdays: string; saturday: string; weekdayHours: string; saturdayHours: string }
+interface CallCenter { title: string; intro: string; hoursPrompt: string; phones: string[]; closing: string }
+interface Complaint { title: string; intro: string; phones: string[]; email: string; details: string }
+interface BranchesSection { title: string; countLabel: string }
+interface FormField { label: string; placeholder: string }
+interface FormText { title: string; subtitle: string; fields: { name: FormField; email: FormField; phone: FormField; message: FormField }; submit: string; submitting: string; success: string; error: string }
+interface ValidationMsgs { nameRequired: string; emailRequired: string; emailInvalid: string; messageRequired: string; phoneInvalid: string }
+interface MapText { title: string; subtitle: string }
 
 export default function ContactPage() {
+  const { t } = useTranslation('contacts');
+  const institution = t('institution', { returnObjects: true }) as Institution;
+  const headOffice = t('headOffice', { returnObjects: true }) as HeadOffice;
+  const branches = t('branches', { returnObjects: true }) as Branch[];
+  const businessHours = t('businessHours', { returnObjects: true }) as BusinessHours;
+  const callCenter = t('callCenter', { returnObjects: true }) as CallCenter;
+  const complaint = t('complaint', { returnObjects: true }) as Complaint;
+  const branchesSection = t('branchesSection', { returnObjects: true }) as BranchesSection;
+  const formText = t('form', { returnObjects: true }) as FormText;
+  const validation = t('validation', { returnObjects: true }) as ValidationMsgs;
+  const mapText = t('map', { returnObjects: true }) as MapText;
+
   const [values, setValues] = useState<FormValues>({
     name: "",
     email: "",
@@ -77,13 +50,13 @@ export default function ContactPage() {
 
   const validate = (v: FormValues): FormErrors => {
     const e: FormErrors = {};
-    if (!v.name.trim()) e.name = "Name is required.";
-    if (!v.email.trim()) e.email = "Email is required.";
+    if (!v.name.trim()) e.name = validation.nameRequired;
+    if (!v.email.trim()) e.email = validation.emailRequired;
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email))
-      e.email = "Enter a valid email.";
-    if (!v.message.trim()) e.message = "Message is required.";
+      e.email = validation.emailInvalid;
+    if (!v.message.trim()) e.message = validation.messageRequired;
     if (v.phone && v.phone.trim() && !/^[+\d][\d\s\-()]{6,}$/.test(v.phone))
-      e.phone = "Enter a valid phone number.";
+      e.phone = validation.phoneInvalid;
     return e;
   };
 
@@ -123,9 +96,7 @@ export default function ContactPage() {
       {/* Header */}
       <section className="bg-white border-b">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-          <h1 className="text-3xl sm:text-4xl font-semibold text-gray-900">
-            Contact Us
-          </h1>
+          <h1 className="text-3xl sm:text-4xl font-semibold text-gray-900">{t('page.title')}</h1>
           <p className="mt-3 text-gray-600">
             {institution.name} — {institution.tagline}
           </p>
@@ -137,53 +108,56 @@ export default function ContactPage() {
         <div className="space-y-7">
           {/* Business Hours */}
           <div className="bg-white rounded-xl shadow-sm border p-6">
-            <h2 className="text-lg font-semibold text-gray-900">Business Hours</h2>
+            <h2 className="text-lg font-semibold text-gray-900">{businessHours.title}</h2>
             <p className="mt-2 text-gray-700">
-              <b>Monday – Friday:</b> 08:00am – 07:00pm<br />
-              <b>Saturday:</b> 08:00am – 05:00pm
+              <b>{businessHours.weekdays}</b> {businessHours.weekdayHours}<br />
+              <b>{businessHours.saturday}</b> {businessHours.saturdayHours}
             </p>
           </div>
           {/* Call Center */}
           <div className="bg-white rounded-xl shadow-sm border p-6">
-            <h2 className="text-lg font-semibold text-gray-900">Call Center</h2>
+            <h2 className="text-lg font-semibold text-gray-900">{callCenter.title}</h2>
             <p className="mt-2 text-gray-700">
-              Welcome to Active People’s Call Center page. Our professional, friendly, and well-trained call center team are waiting to assist you with essential advice in making the right decision for loan services; should it be about loan requirements, terms and conditions, or our location.
+              {callCenter.intro}
             </p>
             <p className="mt-3 text-gray-700">
-              Please call us during our business hours:<br />
-              <a className="text-blue-600 hover:underline" href="tel:+855015533900">+855 (0)15 533 900</a>,{" "}
-              <a className="text-blue-600 hover:underline" href="tel:+855011324473">+855 (0)11 324 473</a>
+              {callCenter.hoursPrompt}<br />
+              {callCenter.phones.map((p: string, i: number) => (
+                <React.Fragment key={p}>
+                  <a className="text-blue-600 hover:underline" href={`tel:${p.replace(/[^+\d]/g,'')}`}>{p}</a>{i < callCenter.phones.length -1 && ', '}
+                </React.Fragment>
+              ))}
             </p>
-            <p className="mt-2 text-gray-600">We endeavor to answer your queries as soon as possible.</p>
+            <p className="mt-2 text-gray-600">{callCenter.closing}</p>
           </div>
           {/* Customer Complaint */}
           <div className="bg-white rounded-xl shadow-sm border p-6">
-            <h2 className="text-lg font-semibold text-gray-900">Customer Complaint</h2>
+            <h2 className="text-lg font-semibold text-gray-900">{complaint.title}</h2>
             <p className="mt-2 text-gray-700">
-              We have set up telephone lines and e-mail to offer solutions to all your complaints:
+              {complaint.intro}
             </p>
             <ul className="mt-3 text-gray-700 space-y-1">
               <li>
                 Tel:&nbsp;
-                <a className="text-blue-600 hover:underline" href="tel:+855012574233">+855 (0)12 574 233</a>,{" "}
-                <a className="text-blue-600 hover:underline" href="tel:+855098213680">+855 (0)98 213 680</a>,{" "}
-                <a className="text-blue-600 hover:underline" href="tel:+855011324473">+855 (0)11 324 473</a>,{" "}
-                <a className="text-blue-600 hover:underline" href="tel:+8550713128777">+855 (0)71 3128 777</a>
+                {complaint.phones.map((p: string, i: number) => (
+                  <React.Fragment key={p}>
+                    <a className="text-blue-600 hover:underline" href={`tel:${p.replace(/[^+\d]/g,'')}`}>{p}</a>{i < complaint.phones.length -1 && ', '}
+                  </React.Fragment>
+                ))}
               </li>
               <li>
                 Email:&nbsp;
-                <a className="text-blue-600 hover:underline" href="mailto:customer_complaint@apmfi.com.kh">customer_complaint@apmfi.com.kh</a>
+                <a className="text-blue-600 hover:underline" href={`mailto:${complaint.email}`}>{complaint.email}</a>
               </li>
             </ul>
             <p className="mt-2 text-gray-700">
-              You may also submit a written complaint to any of our branches during operation hours (Monday–Friday, 8:00 am to 5:00 pm).<br />
-              We offer a solution within 2 days for verbal complaints and 30 days for written complaints. All claims will be kept confidentially.
+              {complaint.details}
             </p>
           </div>
           {/* Branch Locator */}
           <div className="bg-white rounded-xl shadow-sm border p-6">
-            <h2 className="text-lg font-semibold text-gray-900">Branch Locator</h2>
-            <p className="mt-2 text-gray-700">5 branches</p>
+            <h2 className="text-lg font-semibold text-gray-900">{branchesSection.title}</h2>
+            <p className="mt-2 text-gray-700">{t('branchesSection.countLabel', { count: branches.length })}</p>
             <ul className="mt-2 space-y-2">
               {branches.map((b, i) => (
                 <li key={i}>
@@ -197,17 +171,11 @@ export default function ContactPage() {
         {/* Form and Map */}
         <div className="space-y-8">
           <div className="bg-white rounded-xl shadow-sm border p-6">
-            <h2 className="text-xl font-semibold text-gray-900">
-              Send us a message
-            </h2>
-            <p className="mt-2 text-sm text-gray-600">
-              Fill out the form and our team will get back to you shortly.
-            </p>
+            <h2 className="text-xl font-semibold text-gray-900">{formText.title}</h2>
+            <p className="mt-2 text-sm text-gray-600">{formText.subtitle}</p>
             <form className="mt-6 space-y-5" onSubmit={handleSubmit} noValidate>
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-900">
-                  Name
-                </label>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-900">{formText.fields.name.label}</label>
                 <input
                   id="name"
                   name="name"
@@ -216,7 +184,7 @@ export default function ContactPage() {
                   onChange={handleChange("name")}
                   aria-invalid={Boolean(errors.name)}
                   aria-describedby={errors.name ? "name-error" : undefined}
-                  placeholder="Your full name"
+                  placeholder={formText.fields.name.placeholder}
                   className={`mt-2 block w-full rounded-lg border ${
                     errors.name ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-blue-500"
                   } focus:outline-none focus:ring-2 px-3 py-2 bg-white text-gray-900`}
@@ -229,9 +197,7 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-900">
-                  Email
-                </label>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-900">{formText.fields.email.label}</label>
                 <input
                   id="email"
                   name="email"
@@ -240,7 +206,7 @@ export default function ContactPage() {
                   onChange={handleChange("email")}
                   aria-invalid={Boolean(errors.email)}
                   aria-describedby={errors.email ? "email-error" : undefined}
-                  placeholder="you@example.com"
+                  placeholder={formText.fields.email.placeholder}
                   className={`mt-2 block w-full rounded-lg border ${
                     errors.email ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-blue-500"
                   } focus:outline-none focus:ring-2 px-3 py-2 bg-white text-gray-900`}
@@ -253,9 +219,7 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-900">
-                  Phone (optional)
-                </label>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-900">{formText.fields.phone.label}</label>
                 <input
                   id="phone"
                   name="phone"
@@ -264,7 +228,7 @@ export default function ContactPage() {
                   onChange={handleChange("phone")}
                   aria-invalid={Boolean(errors.phone)}
                   aria-describedby={errors.phone ? "phone-error" : undefined}
-                  placeholder="+855 (0)15 533 900"
+                  placeholder={formText.fields.phone.placeholder}
                   className={`mt-2 block w-full rounded-lg border ${
                     errors.phone ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-blue-500"
                   } focus:outline-none focus:ring-2 px-3 py-2 bg-white text-gray-900`}
@@ -277,9 +241,7 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-900">
-                  Message
-                </label>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-900">{formText.fields.message.label}</label>
                 <textarea
                   id="message"
                   name="message"
@@ -288,7 +250,7 @@ export default function ContactPage() {
                   onChange={handleChange("message")}
                   aria-invalid={Boolean(errors.message)}
                   aria-describedby={errors.message ? "message-error" : undefined}
-                  placeholder="How can we help you?"
+                  placeholder={formText.fields.message.placeholder}
                   className={`mt-2 block w-full rounded-lg border ${
                     errors.message ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-blue-500"
                   } focus:outline-none focus:ring-2 px-3 py-2 bg-white text-gray-900`}
@@ -329,13 +291,13 @@ export default function ContactPage() {
                       />
                     </svg>
                   ) : null}
-                  Send Message
+                  {formText.submit}
                 </button>
                 {submitted === "success" && (
-                  <p className="mt-3 text-sm text-green-700">Thanks! Your message has been sent.</p>
+                  <p className="mt-3 text-sm text-green-700">{formText.success}</p>
                 )}
                 {submitted === "error" && (
-                  <p className="mt-3 text-sm text-red-600">Sorry, something went wrong. Please try again.</p>
+                  <p className="mt-3 text-sm text-red-600">{formText.error}</p>
                 )}
               </div>
             </form>
@@ -343,14 +305,12 @@ export default function ContactPage() {
           {/* Map */}
           <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
             <div className="p-6">
-              <h3 className="text-lg font-semibold text-gray-900">Find Us</h3>
-              <p className="mt-1 text-sm text-gray-600">
-                Head Office location on Google Maps
-              </p>
+              <h3 className="text-lg font-semibold text-gray-900">{mapText.title}</h3>
+              <p className="mt-1 text-sm text-gray-600">{mapText.subtitle}</p>
             </div>
             <div className="w-full aspect-video">
               <iframe
-                title="Head Office Location"
+                title={headOffice.name}
                 src={headOffice.mapUrl}
                 className="w-full h-full border-0"
                 loading="lazy"

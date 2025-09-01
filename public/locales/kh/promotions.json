@@ -1,0 +1,79 @@
+{
+  "title": "កម្មវិធីផ្សព្វផ្សាយ",
+  "description": "ពាណិជ្ជកម្ម និងការផ្តល់ជូនចុងក្រោយបំផុតដែលត្រូវនឹងគោលដៅហិរញ្ញវត្ថុរបស់អ្នក។",
+  "labels": {
+    "all": "ទាំងអស់",
+    "learnMore": "ស្វែងយល់បន្ថែម",
+    "validUntil": "មានសុពលភាពដល់:",
+    "until": "ដល់",
+    "featured": "ពិសេស",
+    "viewDetails": "មើលលម្អិត: {{title}}"
+  },
+  "categories": {
+    "Loans": "ឥណទាន",
+    "Installments": "បង់រំលោះ",
+    "SME": "អាជីវកម្មតូច"
+  },
+  "list": [
+    {
+      "id": "p1",
+      "title": "ឥណទានរហ័ស – អនុម័តលឿន",
+      "summary": "ទទួលបានប្រាក់រហ័សសម្រាប់តម្រូវការបន្ទាន់ជាមួយតម្លៃច្បាស់លាស់ និងលក្ខខណ្ឌបត់បែន។",
+      "href": "/products/quick-loan",
+      "badge": "ពិសេស",
+      "category": "Loans",
+      "validUntil": "Dec 31, 2025",
+      "terms": "*អត្រា និងលក្ខខណ្ឌ"
+    },
+    {
+      "id": "p2",
+      "title": "បង់រំលោះឧបករណ៍អេឡិចត្រូនិក – 0%",
+      "summary": "ក្លាយជាម្ចាស់ឧបករណ៍ថ្មីៗឥឡូវនេះ និងបង់ប្រចាំខែជាមួយការបង់ថេរ។",
+      "href": "/products/electronics-installment-loan",
+      "category": "Installments",
+      "validUntil": "Nov 30, 2025"
+    },
+    {
+      "id": "p3",
+      "title": "បង់រំលោះម៉ូតូ – បង់ដំបូងទាប",
+      "summary": "បើកយាន sooner ជាមួយការបង់ដំបូងទាប និងការបង់រំលោះថេរ។",
+      "href": "/products/motorbike-installment-loan",
+      "category": "Installments"
+    },
+    {
+      "id": "p4",
+      "title": "មូលនិធិ ត្រូវការងារ SME – ពង្រីកអាជីវកម្ម",
+      "summary": "ហិរញ្ញប្បទានបត់បែនសម្រាប់អាជីវកម្មតូច និងមីក្រូ។",
+      "href": "/fixtures/sme-working-capital",
+      "category": "SME"
+    },
+    {
+      "id": "p5",
+      "title": "បង់រំលោះរថយន្ត – បើកដោយទំនុកចិត្ត",
+      "summary": "អត្រាប្រកួតប្រជែង និងលក្ខខណ្ឌច្បាស់សម្រាប់រថយន្តថ្មី ឬចាស់។",
+      "href": "/products/car-installment-loan",
+      "category": "Installments"
+    },
+    {
+      "id": "p6",
+      "title": "ឥណទានអប់រំ – វិនិយោគក្នុងអនាគត",
+      "summary": "គាំទ្រចំណាយសិក្សាជាមួយការបង់ប្រចាំខែថេរ។",
+      "href": "/fixtures/education-loan",
+      "category": "Loans"
+    },
+    {
+      "id": "p7",
+      "title": "បង់រំលោះដី – ផែនការជាមួយទំនុកចិត្ត",
+      "summary": "ជំរើសបង់រំលោះសម្រាប់ការទិញដីជាមួយតម្លៃច្បាស់។",
+      "href": "/products/land-installment-loan",
+      "category": "Installments"
+    },
+    {
+      "id": "p8",
+      "title": "បង់រំលោះមានបញ្ចាំ – អត្រាល្អ",
+      "summary": "ប្រើប្រាស់បញ្ចាំដើម្បីទទួលបានដែនកំណត់ខ្ពស់ និងអត្រាល្អ។",
+      "href": "/products/secured-installment-loan",
+      "category": "Loans"
+    }
+  ]
+}

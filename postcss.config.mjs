@@ -1,17 +1,6 @@
 /** @type {import('postcss-load-config').Config} */
-const config = {
+export default {
   plugins: {
     tailwindcss: {},
-  },
-  images: {
-    remotePatterns: [  
-        {
-            protocol: 'https',
-            hostname: 'bytegrad.com',
-        }
-         
-    ]
-}
+  }
 };
-
-export default config;

@@ -1,0 +1,72 @@
+{
+  "institution": {
+    "name": "Active People’s Microfinance Plc.",
+    "tagline": "Enabling growth through responsible finance"
+  },
+  "page": {
+    "title": "Contact Us"
+  },
+  "headOffice": {
+    "name": "Head Office",
+    "address": "Active People’s Microfinance Institution (Head Office), Phnom Penh, Cambodia",
+    "mapHelp": "Head Office location on Google Maps",
+    "mapUrl": "https://www.google.com/maps?q=Active+People%27s+Microfinance+Institution+(Head+Office),+Phnom+Penh,+Cambodia&output=embed"
+  },
+  "businessHours": {
+    "title": "Business Hours",
+    "weekdays": "Monday – Friday:",
+    "saturday": "Saturday:",
+    "weekdayHours": "08:00am – 07:00pm",
+    "saturdayHours": "08:00am – 05:00pm"
+  },
+  "callCenter": {
+    "title": "Call Center",
+    "intro": "Welcome to Active People’s Call Center page. Our professional, friendly, and well-trained call center team are waiting to assist you with essential advice in making the right decision for loan services; should it be about loan requirements, terms and conditions, or our location.",
+    "hoursPrompt": "Please call us during our business hours:",
+    "phones": ["+855 (0)15 533 900", "+855 (0)11 324 473"],
+    "closing": "We endeavor to answer your queries as soon as possible."
+  },
+  "complaint": {
+    "title": "Customer Complaint",
+    "intro": "We have set up telephone lines and e-mail to offer solutions to all your complaints:",
+    "phones": ["+855 (0)12 574 233", "+855 (0)98 213 680", "+855 (0)11 324 473", "+855 (0)71 3128 777"],
+    "email": "customer_complaint@apmfi.com.kh",
+    "details": "You may also submit a written complaint to any of our branches during operation hours (Monday–Friday, 8:00 am to 5:00 pm). We offer a solution within 2 days for verbal complaints and 30 days for written complaints. All claims will be kept confidentially."
+  },
+  "branchesSection": {
+    "title": "Branch Locator",
+    "countLabel": "{{count}} branches"
+  },
+  "branches": [
+    { "name": "Branch 1", "address": "Phnom Penh, Cambodia", "phone": "+855 (0) 12 574 233", "email": "branch1@apmfi.com.kh" },
+    { "name": "Branch 2", "address": "Phnom Penh, Cambodia", "phone": "+855 (0) 98 213 680", "email": "branch2@apmfi.com.kh" },
+    { "name": "Branch 3", "address": "Phnom Penh, Cambodia", "phone": "+855 (0) 11 324 473", "email": "branch3@apmfi.com.kh" },
+    { "name": "Branch 4", "address": "Phnom Penh, Cambodia", "phone": "+855 (0) 71 3128 777", "email": "branch4@apmfi.com.kh" },
+    { "name": "Branch 5", "address": "Phnom Penh, Cambodia", "phone": "+855 (0)15 533 900", "email": "branch5@apmfi.com.kh" }
+  ],
+  "form": {
+    "title": "Send us a message",
+    "subtitle": "Fill out the form and our team will get back to you shortly.",
+    "fields": {
+      "name": { "label": "Name", "placeholder": "Your full name" },
+      "email": { "label": "Email", "placeholder": "you@example.com" },
+      "phone": { "label": "Phone (optional)", "placeholder": "+855 (0)15 533 900" },
+      "message": { "label": "Message", "placeholder": "How can we help you?" }
+    },
+    "submit": "Send Message",
+    "submitting": "Sending...",
+    "success": "Thanks! Your message has been sent.",
+    "error": "Sorry, something went wrong. Please try again."
+  },
+  "validation": {
+    "nameRequired": "Name is required.",
+    "emailRequired": "Email is required.",
+    "emailInvalid": "Enter a valid email.",
+    "messageRequired": "Message is required.",
+    "phoneInvalid": "Enter a valid phone number."
+  },
+  "map": {
+    "title": "Find Us",
+    "subtitle": "Head Office location on Google Maps"
+  }
+}

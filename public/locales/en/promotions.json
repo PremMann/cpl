@@ -1,0 +1,79 @@
+{
+  "title": "Promotions",
+  "description": "Latest offers and campaigns tailored to your financial goals.",
+  "labels": {
+    "all": "All",
+    "learnMore": "Learn more",
+    "validUntil": "Valid until:",
+    "until": "Until",
+    "featured": "Featured",
+    "viewDetails": "View details: {{title}}"
+  },
+  "categories": {
+    "Loans": "Loans",
+    "Installments": "Installments",
+    "SME": "SME"
+  },
+  "list": [
+    {
+      "id": "p1",
+      "title": "Quick Loan – Fast Track Approval",
+      "summary": "Get funds fast for urgent needs with transparent pricing and flexible terms.",
+      "href": "/products/quick-loan",
+      "badge": "Featured",
+      "category": "Loans",
+      "validUntil": "Dec 31, 2025",
+      "terms": "*T&Cs apply"
+    },
+    {
+      "id": "p2",
+      "title": "Electronics Installment – 0% Markup Promo",
+      "summary": "Own the latest devices now and pay monthly with clear, predictable payments.",
+      "href": "/products/electronics-installment-loan",
+      "category": "Installments",
+      "validUntil": "Nov 30, 2025"
+    },
+    {
+      "id": "p3",
+      "title": "Motorbike Installment – Low Down Payment",
+      "summary": "Ride sooner with a low upfront cost and fixed monthly installments.",
+      "href": "/products/motorbike-installment-loan",
+      "category": "Installments"
+    },
+    {
+      "id": "p4",
+      "title": "SME Working Capital – Grow Your Business",
+      "summary": "Flexible working capital financing tailored for SMEs and micro businesses.",
+      "href": "/fixtures/sme-working-capital",
+      "category": "SME"
+    },
+    {
+      "id": "p5",
+      "title": "Car Installment – Drive with Confidence",
+      "summary": "Competitive rates and clear terms for new or pre-owned cars.",
+      "href": "/products/car-installment-loan",
+      "category": "Installments"
+    },
+    {
+      "id": "p6",
+      "title": "Education Loan – Invest in Your Future",
+      "summary": "Support tuition and study expenses with predictable monthly payments.",
+      "href": "/fixtures/education-loan",
+      "category": "Loans"
+    },
+    {
+      "id": "p7",
+      "title": "Land Installment – Plan with Confidence",
+      "summary": "Structured installment options for land purchases with transparent pricing.",
+      "href": "/products/land-installment-loan",
+      "category": "Installments"
+    },
+    {
+      "id": "p8",
+      "title": "Secured Installment – Better Rates",
+      "summary": "Leverage your collateral for higher limits and better pricing.",
+      "href": "/products/secured-installment-loan",
+      "category": "Loans"
+    }
+  ]
+}

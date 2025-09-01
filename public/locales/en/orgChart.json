@@ -1,0 +1,20 @@
+{
+  "heroTitle": "Organizational Chart",
+  "heroDescription": "A clear view of our leadership structure from executive management to department heads.",
+  "labels": { "email": "Email", "phone": "Phone" },
+  "top": { "name": "Sokha Chan", "role": "Chief Executive Officer", "email": "ceo@apmfi.com.kh" },
+  "executives": [
+    { "name": "Sreymom Phan", "role": "Chief Operating Officer", "email": "coo@apmfi.com.kh" },
+    { "name": "Vannak Kim", "role": "Chief Financial Officer", "email": "cfo@apmfi.com.kh" },
+    { "name": "Rithy Meas", "role": "Chief Risk Officer", "email": "cro@apmfi.com.kh" },
+    { "name": "Sophea Lim", "role": "Chief Credit Officer", "email": "cco@apmfi.com.kh" }
+  ],
+  "heads": [
+    { "name": "Dara Seng", "role": "Head of Human Resources" },
+    { "name": "Pisey Chea", "role": "Head of Operations" },
+    { "name": "Rina Im", "role": "Head of Customer Support" },
+    { "name": "Kosal Nhem", "role": "Head of Compliance" },
+    { "name": "Vicheka Sun", "role": "Head of Branch Network" },
+    { "name": "Sreynet Noun", "role": "Head of Finance" }
+  ]
+}

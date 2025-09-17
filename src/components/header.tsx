@@ -37,12 +37,13 @@ export default function Header() {
       label: t('products').toUpperCase(),
       href: '/products',
       children: [
-        { label: 'Quick Loan', href: '/products/quick-loan' },
-        { label: 'Electronics Installment Loan', href: '/products/electronics-installment-loan' },
-        { label: 'Motorbike Installment Loan', href: '/products/motorbike-installment-loan' },
-        // { label: 'Car Installment Loan', href: '/products/car-installment-loan' },
-        // { label: 'Land Installment Loan', href: '/products/land-installment-loan' },
-        // { label: 'Secured Installment Loan', href: '/products/secured-installment-loan' }
+        { label: t('all_products'), href: '/products' },
+        { label: t('quick_loan'), href: '/products/quick-loan' },
+        { label: t('electronics_installment_loan'), href: '/products/electronics-installment-loan' },
+        { label: t('motorbike_installment_loan'), href: '/products/motorbike-installment-loan' },
+        { label: t('car_installment_loan'), href: '/products/car-installment-loan' },
+        { label: t('land_installment_loan'), href: '/products/land-installment-loan' },
+        { label: t('secured_installment_loan'), href: '/products/secured-installment-loan' }
       ]
     },
     { label: t('promotion').toUpperCase(), href: '/promotions' },

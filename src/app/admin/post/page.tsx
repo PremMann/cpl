@@ -1,11 +1,11 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { loadPost, addPost } from '@/actions/data';
+import { addPost } from '@/actions/data';
 import { Suspense } from 'react';
 
 export default async function page() {
-    const posts = await loadPost();
+    // const posts = await loadPost();
 
     return (
         <div className='flex flex-col gap-4 items-center flex-wrap items-center content-center p-4'>
@@ -37,7 +37,7 @@ export default async function page() {
                <div>
                 <h2>Post</h2>
                 <ul>
-                    {Array.isArray(posts) ? (
+                    {/* {Array.isArray(posts) ? (
                         posts.map((post) => (
                             <li key={post.id}>
                                 {post.title}: {post.content}
@@ -45,7 +45,7 @@ export default async function page() {
                         ))
                     ) : (
                         <div>{posts.message}</div>
-                    )}
+                    )} */}
                 </ul>
                </div>
             </Suspense>

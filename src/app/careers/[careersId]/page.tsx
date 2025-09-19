@@ -1,18 +1,6 @@
-//   export default function CareersDetailPage({ params }: { params: { careersId: string } }) {
-//       const { careersId } = params;
-//       // Fetch career data using careersId
-//       return (
-//         <div>
-//           <h1>Career Detail for ID: {careersId}</h1>
-//           {/* Render career details */}
-          
-//         </div>
-//       );
-//     }
-
-
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 
 const JOB = {
   id: "hr-admin-officer",
@@ -55,16 +43,25 @@ export function generateStaticParams() {
   return [{ careersId: JOB.id }];
 }
 
-export function generateMetadata({ params }: { params: { careersId: string } }) {
-  if (params.careersId !== JOB.id) return {};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ careersId: string }>;
+}): Promise<Metadata> {
+  const { careersId } = await params;
+  if (careersId !== JOB.id) return {};
   return {
     title: `${JOB.title} — Careers`,
     description: `${JOB.title} • ${JOB.department} • ${JOB.location}`,
   };
 }
 
-export default function CareersDetailPage({ params }: { params: { careersId: string } }) {
-  const { careersId } = params;
+export default async function CareersDetailPage({
+  params,
+}: {
+  params: Promise<{ careersId: string }>;
+}) {
+  const { careersId } = await params;
   if (careersId !== JOB.id) return notFound();
 
   return (
@@ -92,7 +89,7 @@ export default function CareersDetailPage({ params }: { params: { careersId: str
             </a>
           </div>
 
-          {JOB.tags && JOB.tags.length > 0 && (
+          {JOB.tags?.length ? (
             <div className="mt-4 flex flex-wrap gap-2">
               {JOB.tags.map((t) => (
                 <span
@@ -103,7 +100,7 @@ export default function CareersDetailPage({ params }: { params: { careersId: str
                 </span>
               ))}
             </div>
-          )}
+          ) : null}
         </header>
 
         <main className="mt-6 grid gap-6 md:grid-cols-3">

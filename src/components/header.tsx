@@ -38,7 +38,7 @@ export default function Header() {
       label: t('products').toUpperCase(),
       href: '/products',
       children: [
-        { latebel: t('all_products'), href: '/products' },
+        { label: t('all_products'), href: '/products' },
         { label: 'Quick Loan', href: '/products/quick-loan' },
         { label: 'Electronics Installment Loan', href: '/products/electronics-installment-loan' },
         { label: 'Motorbike Installment Loan', href: '/products/motorbike-installment-loan' },

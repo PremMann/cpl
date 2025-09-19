@@ -349,9 +349,11 @@ export default function Page() {
                 </div>
 
                 <div className="mt-5 flex items-center gap-2">
+                    <span  onClick={() => openApply(job)} className="hidden"> 
+                    </span>
                   <button
                     // onClick={() => openApply(job)}
-                    
+
                     className="inline-flex items-center justify-center rounded-xl bg-[#E53935] px-3.5 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-[#C62828] focus:outline-none focus:ring-2 focus:ring-[#EF5350]/40"
                   >
                     Apply now

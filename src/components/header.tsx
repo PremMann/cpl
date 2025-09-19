@@ -14,7 +14,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from './ui/dropdown-menu';
-
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -37,12 +36,13 @@ export default function Header() {
       label: t('products').toUpperCase(),
       href: '/products',
       children: [
+        { label: t('all_products'), href: '/products' },
         { label: 'Quick Loan', href: '/products/quick-loan' },
         { label: 'Electronics Installment Loan', href: '/products/electronics-installment-loan' },
         { label: 'Motorbike Installment Loan', href: '/products/motorbike-installment-loan' },
-        // { label: 'Car Installment Loan', href: '/products/car-installment-loan' },
-        // { label: 'Land Installment Loan', href: '/products/land-installment-loan' },
-        // { label: 'Secured Installment Loan', href: '/products/secured-installment-loan' }
+        { label: 'Car Installment Loan', href: '/products/car-installment-loan' },
+        { label: 'Land Installment Loan', href: '/products/land-installment-loan' },
+        { label: 'Secured Installment Loan', href: '/products/secured-installment-loan' }
       ]
     },
     { label: t('promotion').toUpperCase(), href: '/promotions' },
@@ -60,7 +60,7 @@ export default function Header() {
   <Link href="/calculation" className="hover:underline">{t('loan_calculator')}</Link>
   <Link href="/" className="hover:underline">{t('loan_car')}</Link>
   <Link href="/" className="hover:underline">{t('apply_loan')}</Link>
-  <Link href="/" className="hover:underline">{t('career')}</Link>
+  <Link href="/careers" className="hover:underline">{t('career')}</Link>
   <button onClick={() => i18n.changeLanguage('en')} className="hover:underline">EN</button>
   <button onClick={() => i18n.changeLanguage('kh')} className="hover:underline">KH</button>
       </div>

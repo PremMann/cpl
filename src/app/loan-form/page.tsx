@@ -59,6 +59,10 @@ export default function LoanFormPage() {
     setSubmitted(true);
     setAppId("APP123456789");
     setAppId("APP123456789");
+    startTransition(() => {
+      setSubmitted(true);
+      setAppId("APP123456789");
+    });
     console.log("Form Data:", fd);
     // setErrors({});
     // startTransition(async () => {

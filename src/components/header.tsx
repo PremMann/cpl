@@ -59,7 +59,7 @@ export default function Header() {
       <div className="flex justify-end bg-red-600 text-white text-xs md:text-sm px-6 py-2 gap-3">
   <Link href="/calculation" className="hover:underline">{t('loan_calculator')}</Link>
   <Link href="/" className="hover:underline">{t('loan_car')}</Link>
-  <Link href="/" className="hover:underline">{t('apply_loan')}</Link>
+  <Link href="/loan-form" className="hover:underline">{t('apply_loan')}</Link>
   <Link href="/careers" className="hover:underline">{t('career')}</Link>
   <button onClick={() => i18n.changeLanguage('en')} className="hover:underline">EN</button>
   <button onClick={() => i18n.changeLanguage('kh')} className="hover:underline">KH</button>

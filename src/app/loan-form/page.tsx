@@ -1,6 +1,7 @@
 "use client";
 import loanFormData from "@/data/loanForm.json";
 import { useState, useTransition } from "react";
+import { set } from "zod";
 
 export default function LoanFormPage() {
   const [form, setForm] = useState({
@@ -54,8 +55,11 @@ export default function LoanFormPage() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
-
-    console.log("Form Data:");
+    setErrors({});
+    setSubmitted(true);
+    setAppId("APP123456789");
+    setAppId("APP123456789");
+    console.log("Form Data:", fd);
     // setErrors({});
     // startTransition(async () => {
     //   const res = await submitLoanApplication(fd);

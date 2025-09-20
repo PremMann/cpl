@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import product01 from "../../public/product01.jpg";
+
 import '../lib/i18n';
 import { useTranslation } from 'react-i18next';
 
@@ -39,7 +40,7 @@ export default function Promotions({ title, promotions = fallbackPromotions, sho
     id: item.id,
     title: item.title,
     summary: item.summary || '',
-    image: product01.src, // placeholder
+    image: typeof item.image === 'string' && item.image.length > 0 ? item.image : product01.src,
     href: item.href || '#',
     badge: item.badge,
     category: item.category,

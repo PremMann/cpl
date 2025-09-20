@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 
@@ -90,8 +90,8 @@ function ReportCard({ r }: { r: Report }) {
 export default function AnnualReportPage() {
   const { t } = useTranslation(['annualReports']);
 
-  // Derive reports from translation resources to stay in sync with language
-  const reports: Report[] = useMemo(() => {
+  // Derive reports from translation resources to stay in sync with language (no useMemo)
+  const reports: Report[] = (() => {
     type ReportInput = { year: number; title: string; file: string; size?: string; summary?: string };
     const isReportInput = (o: unknown): o is ReportInput => {
       if (typeof o !== 'object' || o === null) return false;
@@ -113,20 +113,16 @@ export default function AnnualReportPage() {
     }
     cleaned.sort((a, b) => b.year - a.year);
     return cleaned;
-  }, [t]);
+  })();
 
   const [yearFilter, setYearFilter] = useState<number | "all">("all");
 
-  const years = useMemo(
-    () => Array.from(new Set(reports.map((r) => r.year))).sort((a, b) => b - a),
-    [reports]
-  );
+  // Build distinct years list (desc) without useMemo
+  const years = Array.from(new Set(reports.map((r) => r.year))).sort((a, b) => b - a);
 
-  const sortedAll = useMemo(() => [...reports].sort((a, b) => b.year - a.year), [reports]);
-  const filtered = useMemo(
-    () => (yearFilter === "all" ? sortedAll : sortedAll.filter((r) => r.year === yearFilter)),
-    [sortedAll, yearFilter]
-  );
+  // Derive visible list based on filter (no useMemo)
+  const sortedAll = [...reports].sort((a, b) => b.year - a.year);
+  const filtered = yearFilter === "all" ? sortedAll : sortedAll.filter((r) => r.year === yearFilter);
 
   const highlight = filtered[0] ?? null;
 
@@ -203,34 +199,24 @@ export default function AnnualReportPage() {
         </section>
       )}
 
-      {/* Filters */}
+      {/* Filters -> replaced pills with a dropdown */}
       <section className="mx-auto max-w-7xl px-4 md:px-8">
-        <div className="flex flex-wrap items-center gap-2">
-          <button
-            onClick={() => setYearFilter("all")}
-            className={`rounded-full px-3 py-1.5 text-sm border transition ${
-              yearFilter === "all"
-                ? "bg-red-600 text-white border-red-600"
-                : "bg-white text-gray-900 border-gray-300 hover:border-gray-400"
-            }`}
-            aria-pressed={yearFilter === "all"}
+        <div className="flex items-center gap-3">
+          <select
+            id="year-filter"
+            aria-label="Year filter"
+            value={yearFilter === "all" ? "all" : String(yearFilter)}
+            onChange={(e) => {
+              const v = e.target.value;
+              setYearFilter(v === "all" ? "all" : Number(v));
+            }}
+            className="block w-full sm:w-64 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
           >
-            {t('filters.allYears', { ns: 'annualReports' })}
-          </button>
-          {years.map((y) => (
-            <button
-              key={y}
-              onClick={() => setYearFilter(y)}
-              className={`rounded-full px-3 py-1.5 text-sm border transition ${
-                yearFilter === y
-                  ? "bg-red-600 text-white border-red-600"
-                  : "bg-white text-gray-900 border-gray-300 hover:border-gray-400"
-              }`}
-              aria-pressed={yearFilter === y}
-            >
-              {y}
-            </button>
-          ))}
+            <option value="all">{t('filters.allYears', { ns: 'annualReports' })}</option>
+            {years.map((y) => (
+              <option key={y} value={y}>{y}</option>
+            ))}
+          </select>
         </div>
       </section>
 

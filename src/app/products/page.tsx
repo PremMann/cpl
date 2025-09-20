@@ -3,14 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 import '../../lib/i18n';
 import { useTranslation } from 'react-i18next';
-import product01 from "../../../public/product01.jpg";
-
+import product01 from '../../../public/product01.jpg';
 type Product = { slug: string; name: string; description: string; image: string };
 
 function useProducts(): { products: Product[]; heroTitle: string; heroDescription: string; viewDetails: string; ariaView: (name: string) => string } {
   const { t } = useTranslation('products');
-  const items = t('list', { returnObjects: true }) as { slug: string; name: string; description: string }[];
-  const mapped: Product[] = items.map(p => ({ ...p, image: product01.src }));
+  const items = t('list', { returnObjects: true }) as { slug: string; name: string; description: string; image: string }[];
+  const fallbackImage = product01.src;
+  const mapped: Product[] = (items || []).map((p) => ({
+    ...p,
+    image: p.image || fallbackImage,
+  }));
   return {
     products: mapped,
     heroTitle: t('heroTitle'),

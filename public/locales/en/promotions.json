@@ -23,7 +23,8 @@
       "badge": "Featured",
       "category": "Loans",
       "validUntil": "Dec 31, 2025",
-      "terms": "*T&Cs apply"
+      "terms": "*T&Cs apply",
+      "image":"/Images/p009.jpg"
     },
     {
       "id": "p2",
@@ -31,49 +32,56 @@
       "summary": "Own the latest devices now and pay monthly with clear, predictable payments.",
       "href": "/products/electronics-installment-loan",
       "category": "Installments",
-      "validUntil": "Nov 30, 2025"
+      "validUntil": "Nov 30, 2025",
+      "image":"/Images/p0010.jpg"
     },
     {
       "id": "p3",
       "title": "Motorbike Installment – Low Down Payment",
       "summary": "Ride sooner with a low upfront cost and fixed monthly installments.",
       "href": "/products/motorbike-installment-loan",
-      "category": "Installments"
+      "category": "Installments",
+      "image":"/Images/p0011.jpg"
     },
     {
       "id": "p4",
       "title": "SME Working Capital – Grow Your Business",
       "summary": "Flexible working capital financing tailored for SMEs and micro businesses.",
       "href": "/fixtures/sme-working-capital",
-      "category": "SME"
+      "category": "SME",
+      "image":"/Images/p0012.jpg"
     },
     {
       "id": "p5",
       "title": "Car Installment – Drive with Confidence",
       "summary": "Competitive rates and clear terms for new or pre-owned cars.",
       "href": "/products/car-installment-loan",
-      "category": "Installments"
+      "category": "Installments",
+      "image":"/Images/p0013.jpg"
     },
     {
       "id": "p6",
       "title": "Education Loan – Invest in Your Future",
       "summary": "Support tuition and study expenses with predictable monthly payments.",
       "href": "/fixtures/education-loan",
-      "category": "Loans"
+      "category": "Loans",
+      "image":"/Images/p0014.jpg"
     },
     {
       "id": "p7",
       "title": "Land Installment – Plan with Confidence",
       "summary": "Structured installment options for land purchases with transparent pricing.",
       "href": "/products/land-installment-loan",
-      "category": "Installments"
+      "category": "Installments",
+      "image":"/Images/p0015.jpg"
     },
     {
       "id": "p8",
       "title": "Secured Installment – Better Rates",
       "summary": "Leverage your collateral for higher limits and better pricing.",
       "href": "/products/secured-installment-loan",
-      "category": "Loans"
+      "category": "Loans",
+      "image":"/Images/p0016.jpg"
     }
   ]
 }

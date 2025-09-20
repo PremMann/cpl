@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import '../../globals.css';
-import '../../../lib/i18n'; // ensure i18n is initialized
+import '../../../lib/i18n';
 import { useTranslation } from 'react-i18next';
 
 // Types

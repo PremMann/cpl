@@ -1,6 +1,4 @@
 "use client";
-
-// import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -8,6 +6,8 @@ import React from 'react';
 import '../../../../src/lib/i18n';
 import product01 from "../../../../public/product01.jpg";
 import { useTranslation } from 'react-i18next';
+
+import type { StaticImageData } from "next/image";
 
 interface ProductDetail {
   name: string;
@@ -17,7 +17,7 @@ interface ProductDetail {
   stats?: { interestRate?: string; minAmount?: string; maxAmount?: string; term?: string };
   applyHref?: string;
   brochureHref?: string;
-  image: string;
+  image: string | StaticImageData;
 }
 
 interface ProductListItem { slug: string; name: string; description: string }
@@ -34,48 +34,16 @@ function getFullProduct(slug: string, t: (k: string, o?: { returnObjects?: boole
   if (!base) return null;
   const detailKey = `details.${slug}`;
   const detailObj = t(detailKey, { returnObjects: true }) as ProductDetailTranslation;
-  const image = product01.src; // fallback static image; adapt if per-product assets later
+  const image = detailObj.image || product01; // Fallback image
   return { name: base.name, description: base.description, image, ...detailObj };
 }
 
-// export function generateStaticParams(): { productId: string }[] {
-//   // Keep static list aligned with translation JSON slugs
-//   return [
-//     'quick-loan',
-//     'electronics-installment-loan',
-//     'motorbike-installment-loan',
-//     'car-installment-loan',
-//     'land-installment-loan',
-//     'secured-installment-loan'
-//   ].map(productId => ({ productId }));
-// }
-
-// export async function generateMetadata(
-//   { params }: { params: Promise<{ productId: string }> }
-// ): Promise<Metadata> {
-//   const { productId } = await params;
-//   // Metadata fallback (can't use client hook). Import JSON directly.
-//   // Dynamic import to avoid bundling for all locales.
-//   const en = await import('../../../../public/locales/en/products.json');
-//   const base = (en as any).default.list.find((p: any) => p.slug === productId);
-//   if (!base) return { title: 'Product not found | APMF' };
-//   return {
-//     title: `${base.name} | APMF`,
-//     description: base.description,
-//     openGraph: {
-//       title: `${base.name} | APMF`,
-//       description: base.description,
-//       images: [{ url: product01.src }],
-//     },
-//   };
-// }
 
 export default function ProductDetails({ params }: { params: Promise<{ productId: string }> }) {
   const { productId } = React.use(params);
   return <ClientProductDetails productId={productId} />;
 }
 
-// Client component to use translation hook
 function ClientProductDetails({ productId }: { productId: string }) {
   const { t } = useTranslation('products');
   const product = getFullProduct(productId, t);

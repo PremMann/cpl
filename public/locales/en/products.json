@@ -20,69 +20,81 @@
       "details": "Designed for urgent needs with a simple application process, clear terms, and rapid disbursement. Ideal for short-term personal financing.",
       "features": ["Same-day approval", "Transparent fees", "Flexible repayment"],
       "stats": { "interestRate": "From 1.2% / month", "minAmount": "$100", "maxAmount": "$5,000", "term": "1–24 months" },
-      "applyHref": "/standings/call-center"
+      "applyHref": "/standings/call-center",
+      "image":"/Images/p001.jpg"
     },
     "electronics-installment-loan": {
       "details": "Finance electronics with fixed, predictable monthly payments. Partnered with leading retailers for a seamless experience.",
       "features": ["Fixed installments", "Quick processing", "Clear pricing"],
       "stats": { "interestRate": "From 1.0% / month", "minAmount": "$100", "maxAmount": "$3,000", "term": "3–24 months" },
-      "applyHref": "/standings/call-center"
+      "applyHref": "/standings/call-center",
+      "image":"/Images/p002.jpg"
     },
     "motorbike-installment-loan": {
       "details": "Affordable financing for new or used motorbikes with quick processing and flexible tenors tailored to your budget.",
       "features": ["Low down payment", "Flexible terms", "Easy documentation"],
       "stats": { "interestRate": "From 1.1% / month", "minAmount": "$300", "maxAmount": "$6,000", "term": "6–36 months" },
-      "applyHref": "/standings/call-center"
+      "applyHref": "/standings/call-center",
+      "image":"/Images/p003.jpg"
     },
     "car-installment-loan": {
       "details": "Whether new or pre-owned, our car loans offer predictable payments and quick turnaround so you can drive sooner.",
       "features": ["Competitive rates", "Fast approval", "Flexible down payment"],
       "stats": { "interestRate": "From 1.0% / month", "minAmount": "$2,000", "maxAmount": "$30,000", "term": "12–60 months" },
-      "applyHref": "/standings/call-center"
+      "applyHref": "/standings/call-center",
+      "image":"/Images/p004.jpg "
     },
     "land-installment-loan": {
       "details": "Finance land purchases with installment plans that match your cash flow. Simple process and transparent pricing.",
       "features": ["Flexible plans", "Clear documentation", "Dedicated support"],
       "stats": { "interestRate": "From 1.2% / month", "minAmount": "$5,000", "maxAmount": "$80,000", "term": "12–84 months" },
-      "applyHref": "/standings/call-center"
+      "applyHref": "/standings/call-center",
+      "image":"/Images/p005.jpg"
     },
     "secured-installment-loan": {
       "details": "Use eligible collateral to access higher limits and better pricing. Ideal for larger needs with stable repayment.",
       "features": ["Higher limits", "Better pricing", "Predictable installments"],
       "stats": { "interestRate": "From 0.9% / month", "minAmount": "$500", "maxAmount": "$50,000", "term": "6–60 months" },
-      "applyHref": "/standings/call-center"
+      "applyHref": "/standings/call-center",
+      "image":"/Images/p006.jpg"
     }
   },
   "list": [
     {
       "slug": "quick-loan",
       "name": "Quick Loan",
-      "description": "Fast approval for urgent personal expenses with flexible terms."
+      "description": "Fast approval for urgent personal expenses with flexible terms.",
+      "image":"/Images/p001.jpg"
     },
     {
       "slug": "electronics-installment-loan",
       "name": "Electronics Installment Loan",
-      "description": "Buy electronics now and pay monthly with transparent pricing."
+      "description": "Buy electronics now and pay monthly with transparent pricing.",
+      "image":"/Images/p002.jpg"
     },
     {
       "slug": "motorbike-installment-loan",
       "name": "Motorbike Installment Loan",
-      "description": "Own a motorbike with low upfront cost and fixed monthly payments."
+      "description": "Own a motorbike with low upfront cost and fixed monthly payments.",
+      "image":"/Images/p003.jpg"
     },
     {
       "slug": "car-installment-loan",
       "name": "Car Installment Loan",
-      "description": "Finance your car with competitive rates and clear terms."
+      "description": "Finance your car with competitive rates and clear terms.",
+      "image":"/Images/p004.jpg"
     },
     {
       "slug": "land-installment-loan",
       "name": "Land Installment Loan",
-      "description": "Structured payments for land purchases with confidence."
+      "description": "Structured payments for land purchases with confidence.",
+      "image":"/Images/p005.jpg"
     },
     {
       "slug": "secured-installment-loan",
       "name": "Secured Installment Loan",
-      "description": "Leverage your collateral for better rates and limits."
+      "description": "Leverage your collateral for better rates and limits.",
+      "image":"/Images/p006.jpg"
     }
   ]
 }

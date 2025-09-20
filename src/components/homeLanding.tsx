@@ -7,7 +7,14 @@ import slide02 from "../../public/slide02.jpg";
 import slide03 from "../../public/slide03.jpg";
 import slide04 from "../../public/slide04.jpg";
 import slide05 from "../../public/slide05.png";
-import product01 from "../../public/product01.jpg";
+import product01 from "../../public/Images/p001.jpg";
+import product02 from "../../public/Images/p002.jpg";
+import product03 from "../../public/Images/p003.jpg";
+import product04 from "../../public/Images/p004.jpg";
+import product05 from "../../public/Images/p005.jpg";
+import product06 from "../../public/Images/p006.jpg";
+import product07 from "../../public/Images/p007.jpg";
+import product08 from "../../public/Images/p008.jpg";
 
 import Promotions from "./promotions";
 
@@ -71,43 +78,43 @@ const products: Product[] = [
   },
   {
     name: "Electronics Installment Loan",
-    image: product01.src,
+    image: product02.src,
     detailHref: "/products/electronics-installment-loan",
     description: "Buy electronics now and pay monthly with transparent pricing.",
   },
   {
     name: "Motorbike Installment Loan",
-    image: product01.src,
+    image: product03.src,
     detailHref: "/products/motorbike-installment-loan",
     description: "Own a motorbike with low upfront cost and fixed monthly payments.",
   },
   {
     name: "Car Installment Loan",
-    image: product01.src,
+    image: product04.src,
     detailHref: "/products/car-installment-loan",
     description: "Finance your car with competitive rates and clear terms.",
   },
   {
     name: "Land Installment Loan",
-    image: product01.src,
+    image: product05.src,
     detailHref: "/products/land-installment-loan",
     description: "Structured payments for land purchases with confidence.",
   },
   {
     name: "Secured Installment Loan",
-    image: product01.src,
+    image: product06.src,
     detailHref: "/products/secured-installment-loan",
     description: "Leverage your collateral for better rates and limits.",
   },
   {
     name: "SME Working Capital",
-    image: product01.src,
+    image: product07.src,
     detailHref: "/products/sme-working-capital",
     description: "Fuel daily operations and growth with tailored financing.",
   },
   {
     name: "Education Loan",
-    image: product01.src,
+    image: product08.src,
     detailHref: "/products/education-loan",
     description: "Invest in education with flexible and predictable payments.",
   },
